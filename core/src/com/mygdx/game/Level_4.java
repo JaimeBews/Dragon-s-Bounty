@@ -20,6 +20,10 @@ public class Level_4 extends GameScreenUI {
     ActorBeta foreground;
     ActorBeta background;
     ActorBeta bottomBoundary;//ALJON LOOK HERE
+    ActorBeta bottomBoundaryL;
+    ActorBeta sideBoundaryL;
+    ActorBeta sideBoundaryR;
+    ActorBeta topBoundary;
     @Override
     public void initialize() {
         super.initialize();
@@ -31,6 +35,26 @@ public class Level_4 extends GameScreenUI {
         bottomBoundary = new ActorBeta(0,0,mainStage);
         bottomBoundary.setSize(WIDTH/2,100);
         bottomBoundary.setBoundaryRectangle();
+
+        bottomBoundaryL = new ActorBeta(0,0,mainStage);
+        bottomBoundaryL.setSize(WIDTH/0.9f, 100);
+        bottomBoundaryL.setPosition(WIDTH / 1.8f, HEIGHT / 150);
+        bottomBoundaryL.setBoundaryRectangle();
+
+        sideBoundaryL = new ActorBeta(0,0,mainStage);
+        sideBoundaryL.setSize(WIDTH/20.0f, 1000);
+       // SideBoundaryL.setPosition(WIDTH / 1.3f, HEIGHT);
+        sideBoundaryL.setBoundaryRectangle();
+
+        sideBoundaryR = new ActorBeta(0,0,mainStage);
+        sideBoundaryR.setSize(WIDTH/0.8f, 1000);
+        sideBoundaryR.setPosition(WIDTH / 1.05f,0);
+        sideBoundaryR.setBoundaryRectangle();
+
+        topBoundary = new ActorBeta(0,0,mainStage);
+        topBoundary.setSize(1800, 100);
+         topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
+        topBoundary.setBoundaryRectangle();
 
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Beat One.mp3"));
         bgm.play();
@@ -68,7 +92,13 @@ public class Level_4 extends GameScreenUI {
 
     @Override
     public void update(float dt) {
+
         blueRanger.preventOverlap(bottomBoundary);
+        blueRanger.preventOverlap(bottomBoundaryL);
+        blueRanger.preventOverlap(sideBoundaryL);
+        blueRanger.preventOverlap(sideBoundaryR);
+        blueRanger.preventOverlap(topBoundary);
+
          if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();
