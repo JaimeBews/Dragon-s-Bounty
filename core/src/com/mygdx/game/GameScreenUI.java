@@ -89,7 +89,7 @@ public class GameScreenUI extends ScreenBeta {
             public void changed(ChangeEvent event, Actor actor) {
                 float deltaX = ((Touchpad) actor).getKnobPercentX();
                 float deltaY = ((Touchpad) actor).getKnobPercentY();
-                blueRanger.setPosition(blueRanger.getX()+deltaX*(blueRanger.speed),blueRanger.getY()+deltaY*(blueRanger.speed));
+
                 Gdx.app.log("Delta X", "" + deltaX);
                 Gdx.app.log("Delta Y", "" + deltaY);
             }
@@ -156,14 +156,7 @@ public class GameScreenUI extends ScreenBeta {
     public void update(float dt) {
 
         touchpad.act(dt);
-
-        if(touchpad.getKnobPercentX() > 0.5 && touchpad.getKnobPercentX() < 0.9) {
-            Gdx.app.log("Delta X", "Knob X is " + touchpad.getKnobPercentX());
-        }
-
-        if(touchpad.getKnobPercentY() > 0.5 && touchpad.getKnobPercentY() < 0.9) {
-            Gdx.app.log("Delta Y", "Knob Y is " + touchpad.getKnobPercentX());
-        }
+        blueRanger.setPosition(blueRanger.getX()+touchpad.getKnobPercentX()*(blueRanger.speed),blueRanger.getY()+touchpad.getKnobPercentY()*(blueRanger.speed));
 
     }
 

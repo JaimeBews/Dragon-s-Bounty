@@ -441,7 +441,7 @@ public class ActorBeta extends Actor {
         if(!polygonOverlap)
             return null;
 
-        this.moveBy(mtv.normal.x * mtv.depth, mtv.normal.y * mtv.depth);
+        this.moveBy(mtv.normal.x * mtv.depth/8, mtv.normal.y * mtv.depth/8);
 
         return mtv.normal;
     }
