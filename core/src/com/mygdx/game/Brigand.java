@@ -4,7 +4,7 @@ package com.mygdx.game;
  * Created by markapptist on 2018-11-12.
  */
 
-public class Brigand extends PowerRanger {
+public class Brigand extends EnemyBase {
     float speed;
     Brigand() {
     speed=5;
@@ -25,6 +25,7 @@ public class Brigand extends PowerRanger {
         super.act(dt);
 
         setAcceleration(900);
+
     //    accelerateAtAngle(270);
      //   applyPhysics(dt);
     }

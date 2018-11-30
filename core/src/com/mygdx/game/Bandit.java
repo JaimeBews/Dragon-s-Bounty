@@ -4,7 +4,7 @@ package com.mygdx.game;
  * Created by markapptist on 2018-11-12.
  */
 
-public class Bandit extends PowerRanger {
+public class Bandit extends EnemyBase {
     float speed;
     Bandit() {
     speed=5;
@@ -23,10 +23,26 @@ public class Bandit extends PowerRanger {
     @Override
     public void act(float dt) {
         super.act(dt);
-
+        shoot(other);
         setAcceleration(900);
     //    accelerateAtAngle(270);
      //   applyPhysics(dt);
     }
+
+    public void shoot(ActorBeta other)
+    {
+
+        if(this.isWithinDistance(150.0f, other )) {
+            this.move = false;
+            System.out.println("shoot");
+        }
+         else
+        {
+            System.out.println("not in dist");
+            this.move = true;
+        }
+
+    }
+
 
 }

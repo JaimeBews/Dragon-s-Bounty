@@ -44,18 +44,6 @@ public class Level_4 extends GameScreenUI {
 
         //CREATE BLUE RANGER*/
 
-        pirateA = new PirateA();
-        pirateA.setPosition(WIDTH / 4, HEIGHT / 6);
-        mainStage.addActor(pirateA);
-
-        brigand = new Brigand();
-        brigand.setPosition(WIDTH / 1.3f, HEIGHT / 6);
-        mainStage.addActor(brigand);
-
-
-        bandit = new Bandit();
-        bandit.setPosition(WIDTH / 2, HEIGHT / 6);
-        mainStage.addActor(bandit);
         princess = new Princess();
         princess.setPosition(WIDTH / 4, HEIGHT / 3);
         mainStage.addActor(princess);
@@ -63,6 +51,22 @@ public class Level_4 extends GameScreenUI {
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
+
+        pirateA = new PirateA();
+        pirateA.setPosition(WIDTH / 4, HEIGHT / 6);
+        pirateA.getplayer(blueRanger);
+        mainStage.addActor(pirateA);
+
+        brigand = new Brigand();
+        brigand.setPosition(WIDTH / 1.3f, HEIGHT / 6);
+        brigand.getplayer(blueRanger);
+        mainStage.addActor(brigand);
+
+
+        bandit = new Bandit();
+        bandit.setPosition(WIDTH / 2, HEIGHT / 6);
+        bandit.getplayer(blueRanger);
+        mainStage.addActor(bandit);
 
     }
 
@@ -79,6 +83,9 @@ public class Level_4 extends GameScreenUI {
                 }
         super.update(dt);
         blueRanger.act(dt);
+        bandit.act(dt);
+        pirateA.act(dt);
+        brigand.act(dt);
         blueRanger.boundToWorld();
     }
 

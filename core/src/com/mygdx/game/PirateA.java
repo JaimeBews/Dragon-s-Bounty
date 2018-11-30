@@ -4,7 +4,7 @@ package com.mygdx.game;
  * Created by markapptist on 2018-11-12.
  */
 
-public class PirateA extends PowerRanger {
+public class PirateA extends EnemyBase {
     float speed;
     PirateA() {
     speed=5;
