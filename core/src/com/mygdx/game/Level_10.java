@@ -39,7 +39,9 @@ public class Level_10 extends GameScreenUI {
         background.setScale(2.0f);
 
         //CREATE BLUE RANGER*/
-        blueRanger = new BlueRanger();
+        blueRanger =MyGame.blueRanger;
+
+        MyGame.blueRanger=blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();

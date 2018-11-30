@@ -70,10 +70,13 @@ public class Level_4 extends GameScreenUI {
 
         princess = new Princess();
         princess.setPosition(WIDTH / 4, HEIGHT / 3);
+        princess.setBoundaryRectangle();
         mainStage.addActor(princess);
-        blueRanger = new BlueRanger();
+
+        blueRanger =MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
+
         loadUI();
 
         pirateA = new PirateA();
@@ -102,7 +105,9 @@ public class Level_4 extends GameScreenUI {
         blueRanger.preventOverlap(sideBoundaryL);
         blueRanger.preventOverlap(sideBoundaryR);
         blueRanger.preventOverlap(topBoundary);
-
+        if(blueRanger.overlaps(princess)){
+            blueRanger.health=2;
+        }
          if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();

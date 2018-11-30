@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class BlueRanger extends PowerRanger {
     float speed;
+    float health=3;
     BlueRanger() {
     speed=5;
         String[] idleString = {"sprites/rangers/blue/BlueRanger_0.png", "sprites/rangers/blue/BlueRanger_1.png",

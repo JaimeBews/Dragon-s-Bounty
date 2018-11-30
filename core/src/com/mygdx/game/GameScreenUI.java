@@ -127,7 +127,8 @@ public class GameScreenUI extends ScreenBeta {
 
     }
     public void loadUI(){
-        for(int i = 0; i<3; i++) {
+
+        for(int i = 0; i<blueRanger.health; i++) {
             hearts[i] = new ActorBeta(100 * i, HEIGHT - 100, mainStage);
             hearts[i].loadTexture("sprites/myBackgrounds/heart.png");
             mainStage.addActor(hearts[i]);

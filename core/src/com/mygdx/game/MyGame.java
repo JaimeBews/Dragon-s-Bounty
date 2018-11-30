@@ -22,7 +22,7 @@ public class MyGame extends GameBeta {
     static Level_10 level_10;
     static Level_11 level_11;
 
-
+    static BlueRanger blueRanger;
 
 
 
@@ -34,7 +34,7 @@ public class MyGame extends GameBeta {
     public void create() {
 
         super.create();
-
+        blueRanger = new BlueRanger();
         menuScreen = new MenuScreen();
 
         setScreen(menuScreen);
