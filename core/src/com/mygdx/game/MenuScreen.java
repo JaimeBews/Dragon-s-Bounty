@@ -118,10 +118,10 @@ public class MenuScreen extends ScreenBeta {
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
 
-                if (MyGame.level_4 == null) {
-                    MyGame.level_4 = new Level_4();
+                if (MyGame.level_7 == null) {
+                    MyGame.level_7 = new Level_7();
                     bgm.dispose();
-                    MyGame.setActiveScreen(MyGame.level_4);
+                    MyGame.setActiveScreen(MyGame.level_7);
                 }
             }
         });

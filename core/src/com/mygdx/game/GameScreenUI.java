@@ -32,29 +32,37 @@ public class GameScreenUI extends ScreenBeta {
     ActorBeta downTransition;
     ActorBeta upTransition;
     ActorBeta[] hearts;
+    //J-Stuff
+    ActorBeta Right_Collider;
+    ActorBeta Left_Collider;
+    ActorBeta Top_Collider;
+    ActorBeta Bottom_Collider;
+    //J-Stuff
     @Override
     public void initialize() {
         hearts= new ActorBeta[3];
 
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
-
+        //J-Stuff
+        //Colliders();
+        //J-Stuff
         leftTransition = new ActorBeta(0, HEIGHT / 2, mainStage);
-        leftTransition.setSize(100,100);
+        leftTransition.setSize(WIDTH/20,HEIGHT/10);
        // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         leftTransition.setBoundaryRectangle();
 
-        rightTransition = new ActorBeta(WIDTH-100, HEIGHT / 2, mainStage);
-        rightTransition.setSize(100,100);
+        rightTransition = new ActorBeta(WIDTH-(WIDTH/20), HEIGHT / 2, mainStage);
+        rightTransition.setSize(WIDTH/20,HEIGHT/10);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         rightTransition.setBoundaryRectangle();
 
-        downTransition = new ActorBeta(WIDTH/2, 0, mainStage);
-        downTransition.setSize(100,100);
+        downTransition = new ActorBeta(WIDTH/2-(WIDTH/20), 0, mainStage);
+        downTransition.setSize(WIDTH/20,HEIGHT/10);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         downTransition.setBoundaryRectangle();
 
-        upTransition = new ActorBeta(WIDTH/2, HEIGHT-100, mainStage);
-        upTransition.setSize(100,100);
+        upTransition = new ActorBeta(WIDTH/2-(WIDTH/20), HEIGHT-(HEIGHT/10), mainStage);
+        upTransition.setSize(WIDTH/20,HEIGHT/10);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         upTransition.setBoundaryRectangle();
 
@@ -64,22 +72,19 @@ public class GameScreenUI extends ScreenBeta {
 
         uiStage.addActor(tableContainer);
 
-        //mainStage.addActor(hearts);
-        //Touchpad
         touchpad = new Touchpad(40.0f, skin, "default");
-        touchpad.setPosition(0+touchpad.getWidth()+25, HEIGHT / 3);
         touchpad.setResetOnTouchUp(true);
         touchpad.getColor().a = 1.0f;
 
-        uiTable.add(touchpad).width(touchpad.getWidth() * 1.5f).height(touchpad.getHeight() * 1.5f).padRight(1500).padTop(600);
+        uiTable.add(touchpad).width(WIDTH/5.5f).height(HEIGHT/3.5f).padRight(WIDTH-WIDTH/3.0f).padTop(HEIGHT-HEIGHT/3.0f).padLeft(50);
 
         Button aButton = new Button(uiSkin, "default");
         Button bButton = new Button(uiSkin, "default");
         aButton.getColor().a = 1.0f;
         bButton.getColor().a = 1.0f;
 
-        uiTable.padLeft(100).add(aButton).width(aButton.getWidth() * 2.0f).height(aButton.getHeight() * 2.0f).bottom().padRight(0);
-        uiTable.add(bButton).width(bButton.getWidth() * 2.0f).height(bButton.getHeight() * 2.0f).bottom().padBottom(120).padRight(0);
+        uiTable.add(aButton).width(aButton.getWidth() * 2.0f).height(aButton.getHeight() * 2.0f).bottom();
+        uiTable.add(bButton).width(bButton.getWidth() * 2.0f).height(bButton.getHeight() * 2.0f).bottom();
 
 
       //  mainStage.addActor(hearts);
@@ -128,15 +133,16 @@ public class GameScreenUI extends ScreenBeta {
     }
     public void loadUI(){
         for(int i = 0; i<3; i++) {
-            hearts[i] = new ActorBeta(100 * i, HEIGHT - 100, mainStage);
+            hearts[i] = new ActorBeta((WIDTH/20) * i, HEIGHT, mainStage);
             hearts[i].loadTexture("sprites/myBackgrounds/heart.png");
+            hearts[i].setSize(WIDTH/20,HEIGHT/20);
             mainStage.addActor(hearts[i]);
 
             MoveToAction moveAction = new MoveToAction();
-            moveAction.setPosition(100*i, HEIGHT - 100);
+            moveAction.setPosition((WIDTH/20)*i, HEIGHT - HEIGHT/10);
             moveAction.setDuration(1f);
             MoveToAction moveAction2 = new MoveToAction();
-            moveAction2.setPosition(100*i, HEIGHT - 130);
+            moveAction2.setPosition((WIDTH/20)*i, HEIGHT - ((HEIGHT/10)-30));
             moveAction2.setDuration(1f);
 
             SequenceAction sAction = new SequenceAction();
@@ -154,7 +160,13 @@ public class GameScreenUI extends ScreenBeta {
     }
     @Override
     public void update(float dt) {
-
+        /*
+        blueRanger.preventOverlap(Bottom_Collider);
+        blueRanger.preventOverlap(Top_Collider);
+        blueRanger.preventOverlap(Left_Collider);
+        blueRanger.preventOverlap(Right_Collider);
+        */
+        //blueRanger.preventOverlap(topBoundary);
         touchpad.act(dt);
 
         if(touchpad.getKnobPercentX() > 0.5 && touchpad.getKnobPercentX() < 0.9) {
@@ -166,6 +178,33 @@ public class GameScreenUI extends ScreenBeta {
         }
 
     }
+    /*
+    public void Colliders()
+    {
+        Left_Collider = new ActorBeta();
+        Left_Collider.setSize(10, HEIGHT/1.0f);
+        Left_Collider.setPosition(0, 0);
+        Left_Collider.setBoundaryRectangle();
+        mainStage.addActor(Left_Collider);
 
+        Right_Collider = new ActorBeta();
+        Right_Collider.setSize(10, HEIGHT/1.0f);
+        Right_Collider.setPosition(WIDTH,200);
+        Right_Collider.setBoundaryRectangle();
+        mainStage.addActor(Right_Collider);
 
+        Bottom_Collider = new ActorBeta();
+        Bottom_Collider.setSize(WIDTH/1.0f,15);
+        Bottom_Collider.setPosition(0,-15);
+        Bottom_Collider.setBoundaryRectangle();
+        mainStage.addActor(Bottom_Collider);
+
+        Top_Collider = new ActorBeta();
+        Top_Collider.setSize(WIDTH/1.0f, 15);
+        Top_Collider.setPosition(0, HEIGHT/1.0f);
+        Top_Collider.setBoundaryRectangle();
+        mainStage.addActor(Top_Collider);
+    }
+
+*/
 }
