@@ -89,9 +89,10 @@ public class GameScreenUI extends ScreenBeta {
         aButton.getColor().a = 1.0f;
         cButton.getColor().a =1.0f;
         uiTable.padLeft(WIDTH/20).add(aButton).width(aButton.getWidth() * 2.0f).height(aButton.getHeight() * 2.0f).bottom().padRight(0);
-        uiTable.add(bButton).width(bButton.getWidth() * 2.0f).height(bButton.getHeight() * 2.0f).bottom().padBottom(120).padRight(0);
-
-
+        uiTable.add(bButton).width(bButton.getWidth() * 2.0f).height(bButton.getHeight() * 2.0f).bottom().padBottom(HEIGHT/20).padRight(0);
+        uiTable.row();
+        uiTable.add(cButton).width(cButton.getWidth() * 2.0f).height(cButton.getHeight() * 2.0f).bottom().padBottom(HEIGHT/30).padRight(-WIDTH/10).right();
+        uiTable.debug();
       //  mainStage.addActor(hearts);
 
         touchpad.addListener(new ChangeListener() {
@@ -151,7 +152,27 @@ public class GameScreenUI extends ScreenBeta {
 
             }
         });
+        cButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchDown(event, x, y, pointer, button);
+                if(!isAttacking) {
+                    isAttacking = true;
+                    attackType=3;
+                    attackBounds = new ActorBeta();
+                    attackBounds.setSize(WIDTH / 16, HEIGHT / 8);
+                    attackBounds.setBoundaryRectangle();
+                    mainStage.addActor(attackBounds);
+                    if (faceDir == 1) {
+                        attackBounds.setPosition(blueRanger.getX() - (WIDTH / 16), blueRanger.getY());
 
+                    } else {
+                        blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
+                        attackBounds.setPosition(blueRanger.getX(), blueRanger.getY());
+                    }
+                }
+            }
+        });
     }
     public void loadUI(){
 
