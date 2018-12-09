@@ -61,7 +61,6 @@ public class Level_4 extends GameScreenUI {
         bgm.setLooping(true);
         uiStage.addActor(tableContainer);
 
-
         /*background = new ActorBeta(900, 300, mainStage);
         background.loadTexture("sprites/backgrounds/background0_20.png");
         background.setScale(2.0f);
@@ -81,18 +80,15 @@ public class Level_4 extends GameScreenUI {
 
         pirateA = new PirateA();
         pirateA.setPosition(WIDTH / 4, HEIGHT / 6);
-        pirateA.getplayer(blueRanger);
         mainStage.addActor(pirateA);
 
         brigand = new Brigand();
         brigand.setPosition(WIDTH / 1.3f, HEIGHT / 6);
-        brigand.getplayer(blueRanger);
         mainStage.addActor(brigand);
 
 
         bandit = new Bandit();
         bandit.setPosition(WIDTH / 2, HEIGHT / 6);
-        bandit.getplayer(blueRanger);
         mainStage.addActor(bandit);
 
     }

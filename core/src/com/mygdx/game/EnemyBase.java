@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.Gdx;
 
 import java.awt.Label;
 
@@ -20,6 +21,7 @@ public class EnemyBase extends ActorBeta {
     @Override
     public void act(float dt) {
         super.act(dt);
+        getplayer();
         goToPlayer(other, dt);
         //   setAcceleration(900);
         //   accelerateAtAngle(270);
@@ -48,14 +50,19 @@ public class EnemyBase extends ActorBeta {
                 if (this.overlaps(other) == true && attackDelay < 0.0f) {
 
                     // System.out.println("Imma hitting you");
+
                 }
 
             }
         }
 
     }
-    public void getplayer(ActorBeta otherd) {
-        other = otherd;
+    public void getplayer() {
+        if(this.getStage().getRoot().findActor("Player")!=null)
+        {
+            other = this.getStage().getRoot().findActor("Player");
+            Gdx.app.log("test",""+other.getX());
+        }
     }
     public void kill(){this.remove();}
 }
