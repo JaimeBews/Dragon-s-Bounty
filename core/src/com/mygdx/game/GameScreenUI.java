@@ -34,6 +34,9 @@ public class GameScreenUI extends ScreenBeta {
     ActorBeta rightTransition;
     ActorBeta downTransition;
     ActorBeta upTransition;
+
+    ActorBeta pausedOverlay;
+
     ActorBeta[] hearts;
 
     FireBreathP fireBreath;
@@ -100,7 +103,7 @@ public class GameScreenUI extends ScreenBeta {
         uiTable.row();
         uiTable.add(cButton).width(cButton.getWidth() * 2.0f).height(cButton.getHeight() * 2.0f).bottom().padBottom(HEIGHT/30).padRight(-WIDTH/10).right();
 
-        uiTable.debug();
+        //uiTable.debug();
       //  mainStage.addActor(hearts);
 
         touchpad.addListener(new ChangeListener() {
@@ -117,6 +120,13 @@ public class GameScreenUI extends ScreenBeta {
                 super.touchDown(event, x, y, pointer, button);
                 pause=!pause;
                 isPaused=!isPaused;
+                if(pause) {
+                    pausedOverlay = new ActorBeta(0, 0 , mainStage);
+
+                    pausedOverlay.loadTexture("sprites/myBackgrounds/Paused.png");
+                    pausedOverlay.setSize(WIDTH , HEIGHT);
+                }else
+                    pausedOverlay.remove();
             }
         });
         aButton.addListener(new ActorGestureListener() {
