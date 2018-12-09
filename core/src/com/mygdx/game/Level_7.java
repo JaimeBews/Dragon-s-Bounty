@@ -2,6 +2,8 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.math.Vector2;
 
+import java.sql.Time;
+
 /**
  * Created by markapptist on 2018-11-12.
  */
@@ -14,8 +16,9 @@ public class Level_7 extends GameScreenUI {
     boolean ismovingup = false;
     boolean ismovingdown = false;
     Vector2 DirToMove;
-
+    float time;
     ActorBeta foreground;
+    int i = 0;
     ActorBeta background;
     /*
     ActorBeta Right_Collider;
@@ -87,30 +90,47 @@ public class Level_7 extends GameScreenUI {
     @Override
     public void update(float dt) {
 
+        //int time = Time;
 
         Boss.preventOverlap(Left_Collider);
         Boss.preventOverlap(Right_Collider);
         Boss.preventOverlap(Bottom_Collider);
         Boss.preventOverlap(Top_Collider);
-        Boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
-        if (Boss.overlaps(Top_Collider)) {
-            DirToMove = new Vector2((blueRanger.getX() - Boss.getX()), (blueRanger.getY() - Boss.getY()));
-            ismovingdown = true;
-            ismovingup = false;
-        }
-        else if (Boss.overlaps(Bottom_Collider)) {
-            DirToMove = new Vector2((blueRanger.getX() - Boss.getX()), (blueRanger.getY() - Boss.getY()));
-            ismovingdown = false;
-            ismovingup = true;
-        }
-        else if (Boss.overlaps(Right_Collider)) {
-            DirToMove = new Vector2((blueRanger.getX() - Boss.getX()), (blueRanger.getY() - Boss.getY()));
-            ismovingright = false;
-            ismovingleft = true;
-        }else if (Boss.overlaps(Left_Collider)) {
-            DirToMove = new Vector2((blueRanger.getX() - Boss.getX()), (blueRanger.getY() - Boss.getY()));
+        if(i!=3) {
+            time=0;
+            Boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
+            if (Boss.overlaps(Top_Collider)) {
+                DirToMove = new Vector2((blueRanger.getX() - Boss.getX()), (blueRanger.getY() - Boss.getY()));
+                i += 1;
+                ismovingdown = true;
+                ismovingup = false;
+            } else if (Boss.overlaps(Bottom_Collider)) {
+                DirToMove = new Vector2((blueRanger.getX() - Boss.getX()), (blueRanger.getY() - Boss.getY()));
+                ismovingdown = false;
+                ismovingup = true;
+                i += 1;
+            } else if (Boss.overlaps(Right_Collider)) {
+                DirToMove = new Vector2((blueRanger.getX() - Boss.getX()), (blueRanger.getY() - Boss.getY()));
+                ismovingright = false;
+                ismovingleft = true;
+                i += 1;
+            } else if (Boss.overlaps(Left_Collider)) {
+                DirToMove = new Vector2((blueRanger.getX() - Boss.getX()), (blueRanger.getY() - Boss.getY()));
+                ismovingleft = false;
+                ismovingright = true;
+                i += 1;
+            }
+        }else if(i==3)
+        {
             ismovingleft = false;
-            ismovingright = true;
+            ismovingright = false;
+            ismovingup = false;
+            ismovingdown = false;
+            time +=1;
+        }
+        if(time>100)
+        {
+            i=0;
         }
         //Boss.boundToWorld();
         //DirToMove.nor();
