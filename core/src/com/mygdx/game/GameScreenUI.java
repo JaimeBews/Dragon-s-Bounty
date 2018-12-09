@@ -84,10 +84,10 @@ public class GameScreenUI extends ScreenBeta {
         uiTable.add(touchpad).width(touchpad.getWidth() * 1.5f).height(touchpad.getHeight() * 1.5f).padRight(WIDTH/1.5f).padTop(600);
 
         Button aButton = new Button(uiSkin, "default");
-        Button bButton = new Button(uiSkin, "default");
+        Button bButton = new Button(uiSkin, "default2");
+        Button cButton = new Button(uiSkin, "default");
         aButton.getColor().a = 1.0f;
-        bButton.getColor().a = 1.0f;
-
+        cButton.getColor().a =1.0f;
         uiTable.padLeft(WIDTH/20).add(aButton).width(aButton.getWidth() * 2.0f).height(aButton.getHeight() * 2.0f).bottom().padRight(0);
         uiTable.add(bButton).width(bButton.getWidth() * 2.0f).height(bButton.getHeight() * 2.0f).bottom().padBottom(120).padRight(0);
 
