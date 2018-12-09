@@ -58,10 +58,14 @@ public class EnemyBase extends ActorBeta {
 
     }
     public void getplayer() {
-        if(this.getStage().getRoot().findActor("Player")!=null)
+        if(this != null) {
+            if (this.getStage().getRoot().findActor("Player") != null) {
+                other = this.getStage().getRoot().findActor("Player");
+                Gdx.app.log("test", "" + other.getX());
+            }
+        } else
         {
-            other = this.getStage().getRoot().findActor("Player");
-            Gdx.app.log("test",""+other.getX());
+            Gdx.app.log("test", "enemy is null" );
         }
     }
     public void kill(){this.remove();}
