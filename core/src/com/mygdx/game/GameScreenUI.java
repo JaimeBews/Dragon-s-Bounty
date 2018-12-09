@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
@@ -27,6 +28,8 @@ public class GameScreenUI extends ScreenBeta {
     Skin skin;
     Skin uiSkin;
     Music bgm;
+    Sound biteSFX;
+    Sound breathSFX;
     ActorBeta leftTransition;
     ActorBeta rightTransition;
     ActorBeta downTransition;
@@ -44,8 +47,8 @@ public class GameScreenUI extends ScreenBeta {
     @Override
     public void initialize() {
         hearts= new ActorBeta[3];
-
-
+        biteSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/BiteAttack.mp3"));
+        breathSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/BreathAttack.mp3"));
 
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
 
@@ -121,6 +124,7 @@ public class GameScreenUI extends ScreenBeta {
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
                 if(!isAttacking) {
+                    breathSFX.play();
                     isAttacking = true;
                     attackType=1;
                     attackBounds = new ActorBeta();
@@ -146,6 +150,7 @@ public class GameScreenUI extends ScreenBeta {
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
                 if(!isAttacking) {
+                    breathSFX.play();
                     isAttacking = true;
                     attackType=2;
                     attackBounds = new ActorBeta();
@@ -172,6 +177,7 @@ public class GameScreenUI extends ScreenBeta {
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
                 if(!isAttacking&&!pause) {
+                    biteSFX.play();
                     isAttacking = true;
                     attackType=3;
                     attackBounds = new ActorBeta();
