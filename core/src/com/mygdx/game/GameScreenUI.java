@@ -49,22 +49,22 @@ public class GameScreenUI extends ScreenBeta {
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
 
         leftTransition = new ActorBeta(0, HEIGHT / 2, mainStage);
-        leftTransition.setSize(100,100);
+        leftTransition.setSize(WIDTH/19.0f,100);
        // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         leftTransition.setBoundaryRectangle();
 
         rightTransition = new ActorBeta(WIDTH-100, HEIGHT / 2, mainStage);
-        rightTransition.setSize(100,100);
+        rightTransition.setSize(WIDTH/20.0f,100);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         rightTransition.setBoundaryRectangle();
 
         downTransition = new ActorBeta(WIDTH/2, 0, mainStage);
-        downTransition.setSize(100,100);
+        downTransition.setSize(WIDTH/20.0f,100);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         downTransition.setBoundaryRectangle();
 
         upTransition = new ActorBeta(WIDTH/2, HEIGHT-100, mainStage);
-        upTransition.setSize(100,100);
+        upTransition.setSize(WIDTH/20.0f,100);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         upTransition.setBoundaryRectangle();
 
