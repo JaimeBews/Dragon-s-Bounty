@@ -112,7 +112,7 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-               pause=!pause;
+                pause=!pause;
                 isPaused=!isPaused;
             }
         });
@@ -127,6 +127,7 @@ public class GameScreenUI extends ScreenBeta {
                     attackBounds.setSize(WIDTH / 8, HEIGHT / 8);
                     attackBounds.setBoundaryRectangle();
                     mainStage.addActor(attackBounds);
+                    blueRanger.elapsedTime=0;
                     if (faceDir == 1) {
                         runIceBreath(-1);
 
@@ -151,6 +152,7 @@ public class GameScreenUI extends ScreenBeta {
                     attackBounds.setSize(WIDTH / 8, HEIGHT / 8);
                     attackBounds.setBoundaryRectangle();
                     mainStage.addActor(attackBounds);
+                    blueRanger.elapsedTime=0;
                     if (faceDir == 1) {
                         runFireBreath(-1);
 
@@ -176,6 +178,7 @@ public class GameScreenUI extends ScreenBeta {
                     attackBounds.setSize(WIDTH / 32, HEIGHT / 16);
                     attackBounds.setBoundaryRectangle();
                     mainStage.addActor(attackBounds);
+                    blueRanger.elapsedTime=0;
                     if (faceDir == 1) {
                         attackBounds.setPosition(blueRanger.getX() - (WIDTH / 32), blueRanger.getY());
 
@@ -216,14 +219,14 @@ public class GameScreenUI extends ScreenBeta {
     }
     @Override
     public void update(float dt) {
-    if(!pause) {
-        touchpad.act(dt);
-        CheckDirection();
-        SetAnimations(dt);
-        CheckAttackCollisions();
+        if(!pause) {
+            touchpad.act(dt);
+            CheckDirection();
+            SetAnimations(dt);
+            CheckAttackCollisions();
 
-        blueRanger.setPosition(blueRanger.getX() + touchpad.getKnobPercentX() * (blueRanger.speed), blueRanger.getY() + touchpad.getKnobPercentY() * (blueRanger.speed));
-    }
+            blueRanger.setPosition(blueRanger.getX() + touchpad.getKnobPercentX() * (blueRanger.speed), blueRanger.getY() + touchpad.getKnobPercentY() * (blueRanger.speed));
+        }
     }
     private void CheckAttackCollisions(){
         if(mainStage.getRoot().findActor("Enemy")!=null&&attackBounds!=null) {
@@ -249,7 +252,11 @@ public class GameScreenUI extends ScreenBeta {
     float counter;
     private void SetAnimations(float dt){
         if(isAttacking) {
-            blueRanger.setAnimation(blueRanger.biteAttack);
+            if(attackType==1||attackType==2) {
+                blueRanger.setAnimation(blueRanger.breathHold);
+
+            } else
+                blueRanger.setAnimation(blueRanger.biteAttack);
              if(faceDir==2) {
                 blueRanger.setWidth(-blueRanger.getWidth());
 

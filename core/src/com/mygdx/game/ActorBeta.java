@@ -28,7 +28,7 @@ public class ActorBeta extends Actor {
     private Rectangle rectangle;
 
     private Animation<TextureRegion> animation;
-    private float elapsedTime;
+    public float elapsedTime;
     private boolean animationPaused;
 
     private Vector2 velocityVec;

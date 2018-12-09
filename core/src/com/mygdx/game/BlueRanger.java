@@ -25,8 +25,11 @@ public class BlueRanger extends PowerRanger {
         walkUp = loadAnimationFromSheet("sprites/Macs/dragon3.png",1,4,0.3f,true);
         walkDown = loadAnimationFromSheet("sprites/Macs/dragon2.png",1,4,0.3f,true);
 
-        biteAttack = loadAnimationFromSheet("sprites/Macs/dragonbite.png",1,2,0.3f,true);
+        biteAttack = loadAnimationFromSheet("sprites/Macs/dragonbiteleft.png",1,8,0.6f,true);
 
+        breathInit = loadAnimationFromSheet("sprites/Macs/dragonfireinit.png",1,2,0.3f,false);
+        breathHold = loadAnimationFromSheet("sprites/Macs/dragonfireleft.png",1,17,0.3f,false);
+        breathEnd = loadAnimationFromSheet("sprites/Macs/dragonfireend.png",1,2,0.3f,false);
         //  idle = loadAnimationFromFiles(idleString, 0.5f, true);
 
         this.setBoundaryRectangle();

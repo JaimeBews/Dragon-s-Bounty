@@ -16,6 +16,10 @@ public class PowerRanger extends ActorBeta {
     Animation<TextureRegion> walkDown;
     Animation<TextureRegion> biteAttack;
 
+    Animation<TextureRegion> breathInit;
+    Animation<TextureRegion> breathHold;
+    Animation<TextureRegion> breathEnd;
+
     Animation<TextureRegion> walk;
 
     PowerRanger() {
