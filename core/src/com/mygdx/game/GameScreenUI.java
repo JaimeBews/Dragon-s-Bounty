@@ -81,17 +81,21 @@ public class GameScreenUI extends ScreenBeta {
         touchpad.setResetOnTouchUp(true);
         touchpad.getColor().a = 1.0f;
 
+       // uiTable.add(pauseButton);
         uiTable.add(touchpad).width(touchpad.getWidth() * 1.5f).height(touchpad.getHeight() * 1.5f).padRight(WIDTH/1.5f).padTop(600);
-
+        Button pauseButton = new Button(uiSkin, "default");
         Button aButton = new Button(uiSkin, "default");
         Button bButton = new Button(uiSkin, "default2");
         Button cButton = new Button(uiSkin, "default3");
         aButton.getColor().a = 1.0f;
         cButton.getColor().a =1.0f;
+
         uiTable.padLeft(WIDTH/20).add(aButton).width(aButton.getWidth() * 2.0f).height(aButton.getHeight() * 2.0f).bottom().padRight(0);
         uiTable.add(bButton).width(bButton.getWidth() * 2.0f).height(bButton.getHeight() * 2.0f).bottom().padBottom(HEIGHT/20).padRight(0);
+        uiTable.add(pauseButton).width(bButton.getWidth() * 1.5f).height(bButton.getHeight() * 1.5f).top().padBottom(HEIGHT/30);
         uiTable.row();
         uiTable.add(cButton).width(cButton.getWidth() * 2.0f).height(cButton.getHeight() * 2.0f).bottom().padBottom(HEIGHT/30).padRight(-WIDTH/10).right();
+
         uiTable.debug();
       //  mainStage.addActor(hearts);
 
@@ -100,6 +104,14 @@ public class GameScreenUI extends ScreenBeta {
             public void changed(ChangeEvent event, Actor actor) {
                 float deltaX = ((Touchpad) actor).getKnobPercentX();
                 float deltaY = ((Touchpad) actor).getKnobPercentY();
+
+            }
+        });
+        pauseButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchDown(event, x, y, pointer, button);
+
 
             }
         });
@@ -160,11 +172,11 @@ public class GameScreenUI extends ScreenBeta {
                     isAttacking = true;
                     attackType=3;
                     attackBounds = new ActorBeta();
-                    attackBounds.setSize(WIDTH / 16, HEIGHT / 8);
+                    attackBounds.setSize(WIDTH / 32, HEIGHT / 16);
                     attackBounds.setBoundaryRectangle();
                     mainStage.addActor(attackBounds);
                     if (faceDir == 1) {
-                        attackBounds.setPosition(blueRanger.getX() - (WIDTH / 16), blueRanger.getY());
+                        attackBounds.setPosition(blueRanger.getX() - (WIDTH / 32), blueRanger.getY());
 
                     } else {
                         blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
