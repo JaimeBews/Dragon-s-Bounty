@@ -85,7 +85,7 @@ public class GameScreenUI extends ScreenBeta {
 
         Button aButton = new Button(uiSkin, "default");
         Button bButton = new Button(uiSkin, "default2");
-        Button cButton = new Button(uiSkin, "default");
+        Button cButton = new Button(uiSkin, "default3");
         aButton.getColor().a = 1.0f;
         cButton.getColor().a =1.0f;
         uiTable.padLeft(WIDTH/20).add(aButton).width(aButton.getWidth() * 2.0f).height(aButton.getHeight() * 2.0f).bottom().padRight(0);
