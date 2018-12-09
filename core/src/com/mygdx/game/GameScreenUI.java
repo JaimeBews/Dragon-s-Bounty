@@ -38,6 +38,7 @@ public class GameScreenUI extends ScreenBeta {
     ActorBeta attackBounds;
     boolean wasFacingLeft;
     boolean isAttacking=false;
+    boolean pause;
     int faceDir;//left right up down
     int attackType;//fire ice bite
     @Override
@@ -111,8 +112,8 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-
-
+               pause=!pause;
+                isPaused=!isPaused;
             }
         });
         aButton.addListener(new ActorGestureListener() {
@@ -168,7 +169,7 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-                if(!isAttacking) {
+                if(!isAttacking&&!pause) {
                     isAttacking = true;
                     attackType=3;
                     attackBounds = new ActorBeta();
@@ -215,14 +216,14 @@ public class GameScreenUI extends ScreenBeta {
     }
     @Override
     public void update(float dt) {
-
+    if(!pause) {
         touchpad.act(dt);
         CheckDirection();
         SetAnimations(dt);
         CheckAttackCollisions();
 
-        blueRanger.setPosition(blueRanger.getX()+touchpad.getKnobPercentX()*(blueRanger.speed),blueRanger.getY()+touchpad.getKnobPercentY()*(blueRanger.speed));
-
+        blueRanger.setPosition(blueRanger.getX() + touchpad.getKnobPercentX() * (blueRanger.speed), blueRanger.getY() + touchpad.getKnobPercentY() * (blueRanger.speed));
+    }
     }
     private void CheckAttackCollisions(){
         if(mainStage.getRoot().findActor("Enemy")!=null&&attackBounds!=null) {
