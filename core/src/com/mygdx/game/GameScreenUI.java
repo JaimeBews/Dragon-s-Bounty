@@ -39,7 +39,7 @@ public class GameScreenUI extends ScreenBeta {
     boolean wasFacingLeft;
     boolean isAttacking=false;
     int faceDir;//left right up down
-
+    int attackType;//fire ice bite
     @Override
     public void initialize() {
         hearts= new ActorBeta[3];
@@ -108,6 +108,7 @@ public class GameScreenUI extends ScreenBeta {
                 super.touchDown(event, x, y, pointer, button);
                 if(!isAttacking) {
                     isAttacking = true;
+                    attackType=1;
                     attackBounds = new ActorBeta();
                     attackBounds.setSize(WIDTH / 8, HEIGHT / 8);
                     attackBounds.setBoundaryRectangle();
@@ -131,6 +132,7 @@ public class GameScreenUI extends ScreenBeta {
                 super.touchDown(event, x, y, pointer, button);
                 if(!isAttacking) {
                     isAttacking = true;
+                    attackType=2;
                     attackBounds = new ActorBeta();
                     attackBounds.setSize(WIDTH / 8, HEIGHT / 8);
                     attackBounds.setBoundaryRectangle();
@@ -195,10 +197,14 @@ public class GameScreenUI extends ScreenBeta {
             if(attackBounds.overlaps(test))
                 test.kill();
         }
-        if(mainStage.getRoot().findActor("IceWall")!=null&&attackBounds!=null) {
+        if(mainStage.getRoot().findActor("IceWall")!=null&&attackBounds!=null&&attackType==2) {
             ActorBeta test = mainStage.getRoot().findActor("IceWall");
-            if(attackBounds.overlaps(test))
+            if(attackBounds.overlaps(test)) {
+                test.setX(-100000);
                 test.remove();
+
+            }
+
         }
     }
     float counter;
