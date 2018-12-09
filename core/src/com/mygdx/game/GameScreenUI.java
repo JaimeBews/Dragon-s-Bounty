@@ -185,6 +185,11 @@ public class GameScreenUI extends ScreenBeta {
         checkDirection();
         setAnimations(dt);
 
+        if(mainStage.getRoot().findActor("Enemy")!=null&&attackBounds!=null) {
+            EnemyBase test = mainStage.getRoot().findActor("Enemy");
+            if(attackBounds.overlaps(test))
+                test.kill();
+        }
 
         blueRanger.setPosition(blueRanger.getX()+touchpad.getKnobPercentX()*(blueRanger.speed),blueRanger.getY()+touchpad.getKnobPercentY()*(blueRanger.speed));
 
