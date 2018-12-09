@@ -26,6 +26,7 @@ public class Level_5 extends GameScreenUI {
     ActorBeta bottomBoundary;
 
     ActorBeta fireWall;
+    ActorBeta iceWall;
     @Override
     public void initialize() {
         super.initialize();
@@ -65,6 +66,12 @@ public class Level_5 extends GameScreenUI {
         fireWall.setBoundaryRectangle();
         fireWall.setName("FireWall");
 
+        iceWall = new ActorBeta(0,0,mainStage);
+        iceWall.loadTexture("sprites/myBackgrounds/ice.png");
+        iceWall.setSize(upTransition.getWidth()*2, upTransition.getHeight()*2);
+        iceWall.setPosition(upTransition.getX()-upTransition.getWidth()/2, upTransition.getY()-upTransition.getHeight());
+        iceWall.setBoundaryRectangle();
+        iceWall.setName("IceWall");
 
         /*background = new ActorBeta(900, 300, mainStage);
         background.loadTexture("sprites/backgrounds/background0_20.png");
@@ -89,6 +96,7 @@ public class Level_5 extends GameScreenUI {
         blueRanger.preventOverlap(bottomBoundary);
         blueRanger.preventOverlap(topBoundary);
         blueRanger.preventOverlap(fireWall);
+        blueRanger.preventOverlap(iceWall);
         if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();
