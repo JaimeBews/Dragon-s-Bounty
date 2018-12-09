@@ -10,6 +10,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class PowerRanger extends ActorBeta {
 
     Animation<TextureRegion> idle;
+    Animation<TextureRegion> walkLeft;
+    Animation<TextureRegion> walkRight;
+    Animation<TextureRegion> walkUp;
+    Animation<TextureRegion> walkDown;
+    Animation<TextureRegion> biteAttack;
+
     Animation<TextureRegion> walk;
 
     PowerRanger() {

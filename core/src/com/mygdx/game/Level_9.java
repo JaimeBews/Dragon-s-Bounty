@@ -16,7 +16,11 @@ public class Level_9 extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
-
+    ActorBeta sideBoundaryR;
+    ActorBeta sideBoundaryL;
+    ActorBeta sideBoundaryL2;
+    ActorBeta topBoundary;
+    ActorBeta bottomBoundary;
     @Override
     public void initialize() {
         super.initialize();
@@ -30,7 +34,24 @@ public class Level_9 extends GameScreenUI {
         bgm.setLooping(true);
         uiStage.addActor(tableContainer);
 
+        sideBoundaryL = new ActorBeta(0,0,mainStage);
+        sideBoundaryL.setSize(WIDTH/20.0f, 1000);
+        // SideBoundaryL.setPosition(WIDTH / 1.3f, HEIGHT);
+        sideBoundaryL.setBoundaryRectangle();
 
+        sideBoundaryR = new ActorBeta(0,0,mainStage);
+        sideBoundaryR.setSize(WIDTH/0.8f, 1000);
+        sideBoundaryR.setPosition(WIDTH / 1.05f,0);
+        sideBoundaryR.setBoundaryRectangle();
+
+        bottomBoundary = new ActorBeta(0,0,mainStage);
+        bottomBoundary.setSize(1800,100);
+        bottomBoundary.setBoundaryRectangle();
+
+        topBoundary = new ActorBeta(0,0,mainStage);
+        topBoundary.setSize(1800, 100);
+        topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
+        topBoundary.setBoundaryRectangle();
         /*background = new ActorBeta(900, 300, mainStage);
         background.loadTexture("sprites/backgrounds/background0_20.png");
         background.setScale(2.0f);
@@ -44,7 +65,10 @@ public class Level_9 extends GameScreenUI {
 
     @Override
     public void update(float dt) {
-
+        blueRanger.preventOverlap(sideBoundaryL);
+        blueRanger.preventOverlap(sideBoundaryR);
+        blueRanger.preventOverlap(bottomBoundary);
+        blueRanger.preventOverlap(topBoundary);
         if(blueRanger!=null&& rightTransition!=null)
             if(blueRanger.overlaps(rightTransition)){
                 bgm.dispose();
