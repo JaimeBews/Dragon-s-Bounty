@@ -202,9 +202,14 @@ public class GameScreenUI extends ScreenBeta {
             if(attackBounds.overlaps(test)) {
                 test.setX(-100000);
                 test.remove();
-
             }
-
+        }
+        if(mainStage.getRoot().findActor("FireWall")!=null&&attackBounds!=null&&attackType==1) {
+            ActorBeta test = mainStage.getRoot().findActor("FireWall");
+            if(attackBounds.overlaps(test)) {
+                test.setX(-100000);
+                test.remove();
+            }
         }
     }
     float counter;
