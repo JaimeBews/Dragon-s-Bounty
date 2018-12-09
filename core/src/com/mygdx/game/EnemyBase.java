@@ -12,20 +12,21 @@ public class EnemyBase extends ActorBeta {
     Animation<TextureRegion> walk;
     boolean move  = true;
     ActorBeta other;
+    float attackDelay = 2.0f;
     EnemyBase(){
-
+        setName("Enemy");
     }
 
     @Override
     public void act(float dt) {
         super.act(dt);
-        goToPlayer(other);
+        goToPlayer(other, dt);
         //   setAcceleration(900);
         //   accelerateAtAngle(270);
         //  applyPhysics(dt);
     }
 
-    public void goToPlayer(ActorBeta other)
+    public void goToPlayer(ActorBeta other, float dt)
     {
         Vector2 startPos = new Vector2(this.getX(),this.getY());
         Vector2 endPos = new Vector2 (other.getX(), other.getY());
@@ -35,6 +36,7 @@ public class EnemyBase extends ActorBeta {
         Vector2 direction = endPos.sub(startPos);
         direction.nor();
         System.out.println(dist);
+        attackDelay = attackDelay -dt;
 
         if(dist < 500) {
             if (move == true) {
@@ -43,7 +45,7 @@ public class EnemyBase extends ActorBeta {
                     this.setPosition(this.getX() + (direction.x * speed), this.getY() + (direction.y * speed));
                 }
 
-                if (this.overlaps(other) == true) {
+                if (this.overlaps(other) == true && attackDelay < 0.0f) {
 
                     // System.out.println("Imma hitting you");
                 }
@@ -55,5 +57,6 @@ public class EnemyBase extends ActorBeta {
     public void getplayer(ActorBeta otherd) {
         other = otherd;
     }
+    public void kill(){this.remove();}
 }
 
