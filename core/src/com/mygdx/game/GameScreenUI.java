@@ -182,20 +182,27 @@ public class GameScreenUI extends ScreenBeta {
     public void update(float dt) {
 
         touchpad.act(dt);
-        checkDirection();
-        setAnimations(dt);
+        CheckDirection();
+        SetAnimations(dt);
+        CheckAttackCollisions();
 
+        blueRanger.setPosition(blueRanger.getX()+touchpad.getKnobPercentX()*(blueRanger.speed),blueRanger.getY()+touchpad.getKnobPercentY()*(blueRanger.speed));
+
+    }
+    private void CheckAttackCollisions(){
         if(mainStage.getRoot().findActor("Enemy")!=null&&attackBounds!=null) {
             EnemyBase test = mainStage.getRoot().findActor("Enemy");
             if(attackBounds.overlaps(test))
                 test.kill();
         }
-
-        blueRanger.setPosition(blueRanger.getX()+touchpad.getKnobPercentX()*(blueRanger.speed),blueRanger.getY()+touchpad.getKnobPercentY()*(blueRanger.speed));
-
+        if(mainStage.getRoot().findActor("IceWall")!=null&&attackBounds!=null) {
+            ActorBeta test = mainStage.getRoot().findActor("IceWall");
+            if(attackBounds.overlaps(test))
+                test.remove();
+        }
     }
     float counter;
-    private void setAnimations(float dt){
+    private void SetAnimations(float dt){
         if(isAttacking) {
             blueRanger.setAnimation(blueRanger.biteAttack);
              if(faceDir==2) {
@@ -239,7 +246,7 @@ public class GameScreenUI extends ScreenBeta {
             MyGame.setActiveScreen(MyGame.victoryScreen);
         }
     }
-    private void checkDirection(){//left right up down
+    private void CheckDirection(){//left right up down
         if(touchpad.getKnobPercentX()<0){
             faceDir=1;
         }
