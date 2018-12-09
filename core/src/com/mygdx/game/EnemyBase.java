@@ -58,7 +58,7 @@ public class EnemyBase extends ActorBeta {
 
     }
     public void getplayer() {
-        if(this != null) {
+        if(this != null && this.getStage() != null) {
             if (this.getStage().getRoot().findActor("Player") != null) {
                 other = this.getStage().getRoot().findActor("Player");
                 Gdx.app.log("test", "" + other.getX());
