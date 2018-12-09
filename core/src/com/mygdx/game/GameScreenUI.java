@@ -32,9 +32,19 @@ public class GameScreenUI extends ScreenBeta {
     ActorBeta downTransition;
     ActorBeta upTransition;
     ActorBeta[] hearts;
+
+    FireBreathP fireBreath;
+    IceBreathP iceBreath;
+    ActorBeta attackBounds;
+    boolean wasFacingLeft;
+    boolean isAttacking=false;
+    int faceDir;//left right up down
+
     @Override
     public void initialize() {
         hearts= new ActorBeta[3];
+
+
 
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
 
@@ -90,22 +100,28 @@ public class GameScreenUI extends ScreenBeta {
                 float deltaX = ((Touchpad) actor).getKnobPercentX();
                 float deltaY = ((Touchpad) actor).getKnobPercentY();
 
-                Gdx.app.log("Delta X", "" + deltaX);
-                Gdx.app.log("Delta Y", "" + deltaY);
             }
         });
         aButton.addListener(new ActorGestureListener() {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
+                if(!isAttacking) {
+                    isAttacking = true;
+                    attackBounds = new ActorBeta();
+                    attackBounds.setSize(WIDTH / 8, HEIGHT / 8);
+                    attackBounds.setBoundaryRectangle();
+                    mainStage.addActor(attackBounds);
+                    if (faceDir == 1) {
+                        runIceBreath(-1);
 
-                if (MyGame.gameOverScreen == null) {
-                    MyGame.gameOverScreen = new GameOverScreen();
-                    bgm.dispose();
-                    MyGame.setActiveScreen(MyGame.gameOverScreen);
-                }else {
-                    bgm.dispose();
-                    MyGame.setActiveScreen(MyGame.gameOverScreen);
+                        attackBounds.setPosition(blueRanger.getX() - (WIDTH / 8), blueRanger.getY());
+
+                    } else {
+                        runIceBreath(1);
+                        blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
+                        attackBounds.setPosition(blueRanger.getX(), blueRanger.getY());
+                    }
                 }
             }
         });
@@ -113,15 +129,24 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
+                if(!isAttacking) {
+                    isAttacking = true;
+                    attackBounds = new ActorBeta();
+                    attackBounds.setSize(WIDTH / 8, HEIGHT / 8);
+                    attackBounds.setBoundaryRectangle();
+                    mainStage.addActor(attackBounds);
+                    if (faceDir == 1) {
+                        runFireBreath(-1);
 
-                if (MyGame.victoryScreen == null) {
-                    MyGame.victoryScreen = new VictoryScreen();
-                    bgm.dispose();
-                    MyGame.setActiveScreen(MyGame.victoryScreen);
-                }else {
-                    bgm.dispose();
-                    MyGame.setActiveScreen(MyGame.victoryScreen);
+                        attackBounds.setPosition(blueRanger.getX() - (WIDTH / 8), blueRanger.getY());
+
+                    } else {
+                        runFireBreath(1);
+                        blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
+                        attackBounds.setPosition(blueRanger.getX(), blueRanger.getY());
+                    }
                 }
+
             }
         });
 
@@ -157,9 +182,87 @@ public class GameScreenUI extends ScreenBeta {
     public void update(float dt) {
 
         touchpad.act(dt);
+        checkDirection();
+        setAnimations(dt);
+
+
         blueRanger.setPosition(blueRanger.getX()+touchpad.getKnobPercentX()*(blueRanger.speed),blueRanger.getY()+touchpad.getKnobPercentY()*(blueRanger.speed));
 
     }
+    float counter;
+    private void setAnimations(float dt){
+        if(isAttacking) {
+            blueRanger.setAnimation(blueRanger.biteAttack);
+             if(faceDir==2) {
+                blueRanger.setWidth(-blueRanger.getWidth());
 
+            }
+            counter+=dt;
+            if (counter>2) {
+                isAttacking = false;
+                counter = 0;
+                blueRanger.setWidth(-blueRanger.getWidth());
+                attackBounds.remove();
+                if(faceDir==2)
+                    blueRanger.setX(blueRanger.getX()-blueRanger.getWidth());
+            }
+        }
+        else if(faceDir==1){
+            blueRanger.setAnimation(blueRanger.walkLeft);
+        }
+        else if(faceDir==2){
+            blueRanger.setAnimation(blueRanger.walkRight);
+        }
+    }
+    private void gameOver(){
+        if (MyGame.gameOverScreen == null) {
+            MyGame.gameOverScreen = new GameOverScreen();
+            bgm.dispose();
+            MyGame.setActiveScreen(MyGame.gameOverScreen);
+        }else {
+            bgm.dispose();
+            MyGame.setActiveScreen(MyGame.gameOverScreen);
+        }
+    }
+    private void wonGame(){
+        if (MyGame.victoryScreen == null) {
+            MyGame.victoryScreen = new VictoryScreen();
+            bgm.dispose();
+            MyGame.setActiveScreen(MyGame.victoryScreen);
+        }else {
+            bgm.dispose();
+            MyGame.setActiveScreen(MyGame.victoryScreen);
+        }
+    }
+    private void checkDirection(){//left right up down
+        if(touchpad.getKnobPercentX()<0){
+            faceDir=1;
+        }
+        else if(touchpad.getKnobPercentX()>0){
+            faceDir=2;
+        }
+    }
+    private void runFireBreath(float scaleX){
+        if(fireBreath!=null)
+            fireBreath = null;
+        fireBreath = new FireBreathP();
+        fireBreath.setScaleX(scaleX);
+        fireBreath.setScaleY(.5f);
+        fireBreath.start();
+
+        mainStage.addActor(fireBreath);
+        fireBreath.centerAtActor(blueRanger);
+    }
+    private void runIceBreath(float scaleX){
+        if(iceBreath!=null)
+            iceBreath = null;
+        iceBreath = new IceBreathP();
+        iceBreath.setScaleX(scaleX);
+        iceBreath.setScaleY(.5f);
+        iceBreath.start();
+
+        mainStage.addActor(iceBreath);
+        iceBreath.centerAtActor(blueRanger);
+    }
 
 }
