@@ -39,6 +39,7 @@ public class EnemyBase extends ActorBeta {
         direction.nor();
         System.out.println(dist);
         attackDelay = attackDelay -dt;
+        System.out.println(attackDelay);
 
         if(dist < 500) {
             if (move == true) {
@@ -46,13 +47,13 @@ public class EnemyBase extends ActorBeta {
                     // System.out.println("not touching");
                     this.setPosition(this.getX() + (direction.x * speed), this.getY() + (direction.y * speed));
                 }
-
-                if (this.overlaps(other) == true && attackDelay < 0.0f) {
-
-                    // System.out.println("Imma hitting you");
-                 other.takeDamage(1);
-                }
-
+            }
+            if (this.overlaps(other) == true && attackDelay < 0.0f) {
+                move = false;
+                System.out.println("Imma hitting you");
+                other.takeDamage(1);
+                attackDelay = 5.0f;
+                move = true;
             }
         }
 
