@@ -30,6 +30,12 @@ public class GameScreenUI extends ScreenBeta {
     Music bgm;
     Sound biteSFX;
     Sound breathSFX;
+    Sound enemyDeathSFX;
+    Sound fireWallDestroyedSFX;
+    Sound iceWallDestroyedSFX;
+
+
+
     ActorBeta leftTransition;
     ActorBeta rightTransition;
     ActorBeta downTransition;
@@ -52,6 +58,10 @@ public class GameScreenUI extends ScreenBeta {
         hearts= new ActorBeta[3];
         biteSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/BiteAttack.mp3"));
         breathSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/BreathAttack.mp3"));
+
+        enemyDeathSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/ZombiePain.mp3"));
+        fireWallDestroyedSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/Sizzling.mp3"));
+        iceWallDestroyedSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/Freeze.mp3"));
 
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
 
@@ -247,14 +257,17 @@ public class GameScreenUI extends ScreenBeta {
     private void CheckAttackCollisions(){
         if(mainStage.getRoot().findActor("Enemy")!=null&&attackBounds!=null) {
             EnemyBase test = mainStage.getRoot().findActor("Enemy");
-            if(attackBounds.overlaps(test))
+            if(attackBounds.overlaps(test)) {
                 test.kill();
+                enemyDeathSFX.play();
+            }
         }
         if(mainStage.getRoot().findActor("IceWall")!=null&&attackBounds!=null&&attackType==2) {
             ActorBeta test = mainStage.getRoot().findActor("IceWall");
             if(attackBounds.overlaps(test)) {
                 test.setX(-100000);
                 test.remove();
+                iceWallDestroyedSFX.play();
             }
         }
         if(mainStage.getRoot().findActor("FireWall")!=null&&attackBounds!=null&&attackType==1) {
@@ -262,6 +275,7 @@ public class GameScreenUI extends ScreenBeta {
             if(attackBounds.overlaps(test)) {
                 test.setX(-100000);
                 test.remove();
+                fireWallDestroyedSFX.play();
             }
         }
     }
