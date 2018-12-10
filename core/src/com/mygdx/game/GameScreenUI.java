@@ -245,7 +245,14 @@ public class GameScreenUI extends ScreenBeta {
     }
     @Override
     public void update(float dt) {
+        if(blueRanger.health==2)
+            hearts[2].remove();
+        if(blueRanger.health==1)
+            hearts[1].remove();
+        if(blueRanger.health==0)
+            hearts[0].remove();
         if(!pause) {
+
             touchpad.act(dt);
             CheckDirection();
             SetAnimations(dt);
