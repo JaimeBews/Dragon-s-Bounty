@@ -10,8 +10,17 @@ import java.awt.Label;
 public class EnemyBase extends ActorBeta {
 
     Animation<TextureRegion> idle;
-    Animation<TextureRegion> walk;
+    Animation<TextureRegion> walkLeft;
+    Animation<TextureRegion> walkRight;
+    Animation<TextureRegion> walkUp;
+    Animation<TextureRegion> walkDown;
+    Animation<TextureRegion> attackLeft;
+    Animation<TextureRegion> attackRight;
+    Animation<TextureRegion> attackUp;
+    Animation<TextureRegion> attackDown;
     boolean move  = true;
+    boolean attack = false;
+    int movedir =0;
     BlueRanger other;
     float attackDelay = 2.0f;
     EnemyBase(){
@@ -38,22 +47,41 @@ public class EnemyBase extends ActorBeta {
         Vector2 direction = endPos.sub(startPos);
         direction.nor();
         System.out.println(dist);
-        attackDelay = attackDelay -dt;
-        System.out.println(attackDelay);
-
+        System.out.println(movedir);
         if(dist < 500) {
+            attackDelay = attackDelay -dt;
             if (move == true) {
+
                 if (this.overlaps(other) == false) {
                     // System.out.println("not touching");
                     this.setPosition(this.getX() + (direction.x * speed), this.getY() + (direction.y * speed));
+
+                    if(endPos.x == 0.0f && endPos.y == 0.0f){
+                        this.movedir =0;
+                    }
+
+                    if (endPos.x < 0.0f)
+                    {
+                        this.movedir =1;
+                    }else if (endPos.x > 0.0f)
+                    {
+                        this.movedir =2;
+                    }
+                    else if (endPos.y > 0.0f)
+                    {
+                        this.movedir =3;
+                    }else if (endPos.y < 0.0f)
+                    {
+                        this.movedir =4;
+                    }
                 }
             }
             if (this.overlaps(other) == true && attackDelay < 0.0f) {
-                move = false;
+                this.attack =true;
+                this.move = false;
                 System.out.println("Imma hitting you");
                 other.takeDamage(1);
                 attackDelay = 5.0f;
-                move = true;
             }
         }
 
