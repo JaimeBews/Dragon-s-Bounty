@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.sun.media.sound.RIFFInvalidDataException;
 
 /**
  * Created by markapptist on 2018-11-12.
@@ -19,11 +20,11 @@ public class Level_4 extends GameScreenUI {
     Brigand brigand;
     ActorBeta foreground;
     ActorBeta background;
-    ActorBeta bottomBoundary;//ALJON LOOK HERE
-    ActorBeta bottomBoundaryL;
-    ActorBeta sideBoundaryL;
-    ActorBeta sideBoundaryR;
-    ActorBeta topBoundary;
+    //ActorBeta bottomBoundary;//ALJON LOOK HERE
+    //ActorBeta bottomBoundaryL;
+    //ActorBeta sideBoundaryL;
+    //ActorBeta sideBoundaryR;
+    //ActorBeta topBoundary;
     @Override
     public void initialize() {
         super.initialize();
@@ -31,7 +32,7 @@ public class Level_4 extends GameScreenUI {
         foreground = new ActorBeta(0, 0, mainStage);
         foreground.loadTexture("Level Assets/LevelD.png");
         foreground.setSize(WIDTH, HEIGHT);
-
+/*
         bottomBoundary = new ActorBeta(0,0,mainStage);
         bottomBoundary.setSize(WIDTH/2,100);
         bottomBoundary.setBoundaryRectangle();
@@ -55,7 +56,7 @@ public class Level_4 extends GameScreenUI {
         topBoundary.setSize(1800, 100);
          topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
         topBoundary.setBoundaryRectangle();
-
+*/
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Beat One.mp3"));
         bgm.play();
         bgm.setLooping(true);
@@ -73,6 +74,7 @@ public class Level_4 extends GameScreenUI {
         mainStage.addActor(princess);
 
         blueRanger =MyGame.blueRanger;
+        //MyGame.blueRanger = blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
 
@@ -96,11 +98,11 @@ public class Level_4 extends GameScreenUI {
     @Override
     public void update(float dt) {
 
-        blueRanger.preventOverlap(bottomBoundary);
-        blueRanger.preventOverlap(bottomBoundaryL);
-        blueRanger.preventOverlap(sideBoundaryL);
-        blueRanger.preventOverlap(sideBoundaryR);
-        blueRanger.preventOverlap(topBoundary);
+        blueRanger.preventOverlap(Top_Collider);
+        blueRanger.preventOverlap(Bottom_Collider);
+        blueRanger.preventOverlap(Right_Collider);
+        blueRanger.preventOverlap(Left_Collider);
+        //blueRanger.preventOverlap(topBoundary);
         if(blueRanger.overlaps(princess)){
             blueRanger.health=2;
         }

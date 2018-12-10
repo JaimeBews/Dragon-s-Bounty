@@ -17,11 +17,11 @@ public class Level_6 extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
-    ActorBeta sideBoundaryR;
-    ActorBeta sideBoundaryL;
-    ActorBeta sideBoundaryL2;
-    ActorBeta topBoundary;
-    ActorBeta bottomBoundary;
+    //ActorBeta sideBoundaryR;
+    //ActorBeta sideBoundaryL;
+    //ActorBeta sideBoundaryL2;
+    //ctorBeta topBoundary;
+    //ActorBeta bottomBoundary;
     EvilPrincess evilPrincess;
     @Override
     public void initialize() {
@@ -35,6 +35,7 @@ public class Level_6 extends GameScreenUI {
         bgm.play();
         bgm.setLooping(true);
         uiStage.addActor(tableContainer);
+        /*
         sideBoundaryL = new ActorBeta(0,0,mainStage);
         sideBoundaryL.setSize(WIDTH/20.0f, 1000);
         // SideBoundaryL.setPosition(WIDTH / 1.3f, HEIGHT);
@@ -53,6 +54,7 @@ public class Level_6 extends GameScreenUI {
         topBoundary.setSize(1800, 100);
         topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
         topBoundary.setBoundaryRectangle();
+        */
         evilPrincess = new EvilPrincess();
         evilPrincess.setPosition(WIDTH / 4, HEIGHT / 3);
         mainStage.addActor(evilPrincess);
@@ -61,7 +63,7 @@ public class Level_6 extends GameScreenUI {
         background.setScale(2.0f);
 
         //CREATE BLUE RANGER*/
-        blueRanger = new BlueRanger();
+        blueRanger = MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
@@ -69,10 +71,10 @@ public class Level_6 extends GameScreenUI {
 
     @Override
     public void update(float dt) {
-        blueRanger.preventOverlap(sideBoundaryL);
-        blueRanger.preventOverlap(sideBoundaryR);
-        blueRanger.preventOverlap(bottomBoundary);
-        blueRanger.preventOverlap(topBoundary);
+        blueRanger.preventOverlap(Top_Collider);
+        blueRanger.preventOverlap(Left_Collider);
+        blueRanger.preventOverlap(Right_Collider);
+        blueRanger.preventOverlap(Bottom_Collider);
         if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();

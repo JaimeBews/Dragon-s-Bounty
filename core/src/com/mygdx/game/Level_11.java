@@ -17,11 +17,11 @@ public class Level_11 extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
-    ActorBeta sideBoundaryR;
-    ActorBeta sideBoundaryL;
-    ActorBeta sideBoundaryL2;
-    ActorBeta topBoundary;
-    ActorBeta bottomBoundary;
+    //ActorBeta sideBoundaryR;
+    //ActorBeta sideBoundaryL;
+    //ActorBeta sideBoundaryL2;
+    //ActorBeta topBoundary;
+    //ActorBeta bottomBoundary;
     @Override
     public void initialize() {
         super.initialize();
@@ -34,7 +34,7 @@ public class Level_11 extends GameScreenUI {
         bgm.play();
         bgm.setLooping(true);
         uiStage.addActor(tableContainer);
-
+/*
         sideBoundaryL = new ActorBeta(0,0,mainStage);
         sideBoundaryL.setSize(WIDTH/20.0f, 1000);
         // SideBoundaryL.setPosition(WIDTH / 1.3f, HEIGHT);
@@ -67,10 +67,10 @@ public class Level_11 extends GameScreenUI {
 
     @Override
     public void update(float dt) {
-        blueRanger.preventOverlap(sideBoundaryL);
-        blueRanger.preventOverlap(sideBoundaryR);
-        blueRanger.preventOverlap(bottomBoundary);
-        blueRanger.preventOverlap(topBoundary);
+        blueRanger.preventOverlap(Top_Collider);
+        blueRanger.preventOverlap(Bottom_Collider);
+        blueRanger.preventOverlap(Left_Collider);
+        blueRanger.preventOverlap(Right_Collider);
         if(blueRanger!=null&& rightTransition!=null)
             if(blueRanger.overlaps(rightTransition)){
                 bgm.dispose();

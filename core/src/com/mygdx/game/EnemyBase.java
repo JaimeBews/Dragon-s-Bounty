@@ -41,7 +41,7 @@ public class EnemyBase extends ActorBeta {
     {
         Vector2 startPos = new Vector2(this.getX(),this.getY());
         Vector2 endPos = new Vector2 (other.getX(), other.getY());
-        float speed = 2;
+        float speed = 1.5f;
         float dist;
         dist = Vector2.dst(endPos.x,endPos.y,startPos.x,startPos.y);
         Vector2 direction = endPos.sub(startPos);
@@ -50,7 +50,7 @@ public class EnemyBase extends ActorBeta {
         System.out.println(movedir);
         if(dist < 500) {
             attackDelay = attackDelay -dt;
-            if (move == true) {
+            if (move == true && dt!=0) {
 
                 if (this.overlaps(other) == false) {
                     // System.out.println("not touching");

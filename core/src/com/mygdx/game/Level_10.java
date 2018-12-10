@@ -19,11 +19,11 @@ public class Level_10 extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
-    ActorBeta sideBoundaryR;
-    ActorBeta sideBoundaryL;
-    ActorBeta sideBoundaryL2;
-    ActorBeta topBoundary;
-    ActorBeta bottomBoundary;
+    //ActorBeta sideBoundaryR;
+    //ActorBeta sideBoundaryL;
+    //ActorBeta sideBoundaryL2;
+    //ActorBeta topBoundary;
+    //ActorBeta bottomBoundary;
 
     ActorBeta iceWall;
     ActorBeta fireWall;
@@ -39,7 +39,7 @@ public class Level_10 extends GameScreenUI {
         bgm.play();
         bgm.setLooping(true);
         uiStage.addActor(tableContainer);
-
+/*
         sideBoundaryL = new ActorBeta(0,0,mainStage);
         sideBoundaryL.setSize(WIDTH/20.0f, 1000);
         // SideBoundaryL.setPosition(WIDTH / 1.3f, HEIGHT);
@@ -58,7 +58,7 @@ public class Level_10 extends GameScreenUI {
         topBoundary.setSize(1800, 100);
         topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
         topBoundary.setBoundaryRectangle();
-
+*/
         iceWall = new ActorBeta(0,0,mainStage);
         iceWall.loadTexture("sprites/myBackgrounds/ice.png");
         iceWall.setSize(leftTransition.getWidth()*2, leftTransition.getHeight()*2);
@@ -80,7 +80,7 @@ public class Level_10 extends GameScreenUI {
         //CREATE BLUE RANGER*/
         blueRanger =MyGame.blueRanger;
 
-        MyGame.blueRanger=blueRanger;
+        //MyGame.blueRanger=blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
@@ -88,10 +88,10 @@ public class Level_10 extends GameScreenUI {
 
     @Override
     public void update(float dt) {
-        blueRanger.preventOverlap(sideBoundaryL);
-        blueRanger.preventOverlap(sideBoundaryR);
-        blueRanger.preventOverlap(bottomBoundary);
-        blueRanger.preventOverlap(topBoundary);
+        blueRanger.preventOverlap(Top_Collider);
+        blueRanger.preventOverlap(Bottom_Collider);
+        blueRanger.preventOverlap(Left_Collider);
+        blueRanger.preventOverlap(Right_Collider);
         blueRanger.preventOverlap(iceWall);
         blueRanger.preventOverlap(fireWall);
         if(blueRanger!=null&& downTransition!=null)

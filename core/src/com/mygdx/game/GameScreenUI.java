@@ -48,6 +48,12 @@ public class GameScreenUI extends ScreenBeta {
     FireBreathP fireBreath;
     IceBreathP iceBreath;
     ActorBeta attackBounds;
+
+    ActorBeta Right_Collider;
+    ActorBeta Left_Collider;
+    ActorBeta Top_Collider;
+    ActorBeta Bottom_Collider;
+
     boolean wasFacingLeft;
     boolean isAttacking=false;
     boolean pause;
@@ -55,6 +61,7 @@ public class GameScreenUI extends ScreenBeta {
     int attackType;//fire ice bite
     @Override
     public void initialize() {
+        Colliders();
         hearts= new ActorBeta[3];
         biteSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/BiteAttack.mp3"));
         breathSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/BreathAttack.mp3"));
@@ -364,6 +371,33 @@ public class GameScreenUI extends ScreenBeta {
 
         mainStage.addActor(iceBreath);
         iceBreath.centerAtActor(blueRanger);
+    }
+
+    public void Colliders()
+    {
+        Left_Collider = new ActorBeta();
+        Left_Collider.setSize(10, HEIGHT/1.0f);
+        Left_Collider.setPosition(0, 0);
+        Left_Collider.setBoundaryRectangle();
+        mainStage.addActor(Left_Collider);
+
+        Right_Collider = new ActorBeta();
+        Right_Collider.setSize(10, HEIGHT/1.0f);
+        Right_Collider.setPosition(WIDTH,200);
+        Right_Collider.setBoundaryRectangle();
+        mainStage.addActor(Right_Collider);
+
+        Bottom_Collider = new ActorBeta();
+        Bottom_Collider.setSize(WIDTH/1.0f,15);
+        Bottom_Collider.setPosition(0,-15);
+        Bottom_Collider.setBoundaryRectangle();
+        mainStage.addActor(Bottom_Collider);
+
+        Top_Collider = new ActorBeta();
+        Top_Collider.setSize(WIDTH/1.0f, 15);
+        Top_Collider.setPosition(0, HEIGHT/1.0f);
+        Top_Collider.setBoundaryRectangle();
+        mainStage.addActor(Top_Collider);
     }
 
 }
