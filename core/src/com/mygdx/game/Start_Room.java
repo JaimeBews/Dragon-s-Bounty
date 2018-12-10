@@ -1,19 +1,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.sun.media.sound.RIFFInvalidDataException;
 
 /**
  * Created by markapptist on 2018-11-12.
  */
 
-public class Level_4 extends GameScreenUI {
+public class Start_Room extends GameScreenUI {
     PirateA pirateA;
     Princess princess;
     Bandit bandit;
@@ -109,10 +102,10 @@ public class Level_4 extends GameScreenUI {
          if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();
-                MyGame.level_10 = null;
-                MyGame.level_10 = new Level_10();
-                MyGame.setActiveScreen(MyGame.level_10);
-                MyGame.level_4=null;
+                MyGame.hubRoom = null;
+                MyGame.hubRoom = new Hub_Room();
+                MyGame.setActiveScreen(MyGame.hubRoom);
+                MyGame.startRoom =null;
                 }
         super.update(dt);
         blueRanger.act(dt);

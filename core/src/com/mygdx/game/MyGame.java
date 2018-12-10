@@ -10,17 +10,17 @@ public class MyGame extends GameBeta {
     static GameScreen gameScreen;
     static GameOverScreen gameOverScreen;
     static VictoryScreen victoryScreen;
-    static Level_1 level_1;
-    static Level_2 level_2;
-    static Level_3 level_3;
-    static Level_4 level_4;
-    static Level_5 level_5;
-    static Level_6 level_6;
-    static Level_7 level_7;
-    static Level_8 level_8;
-    static Level_9 level_9;
-    static Level_10 level_10;
-    static Level_11 level_11;
+    static Bandit_Room_2 banditRoom2;
+    static Buccaneer_Room buccaneerRoom;
+    static Treasure_Room treasureRoom;
+    static Start_Room startRoom;
+    static Bandit_Room banditRoom;
+    static Brigand_Boss_Room brigandBossRoom;
+    static Bandit_Boss_Room banditBossRoom;
+    static Brigand_Room brigandRoom;
+    static Buccaneer_Boss_Room buccaneerBossRoom;
+    static Hub_Room hubRoom;
+    static Item_Room itemRoom;
 
     static BlueRanger blueRanger;
 

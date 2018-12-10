@@ -1,15 +1,10 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
@@ -118,10 +113,10 @@ public class MenuScreen extends ScreenBeta {
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
 
-                if (MyGame.level_4 == null) {
-                    MyGame.level_4 = new Level_4();
+                if (MyGame.startRoom == null) {
+                    MyGame.startRoom = new Start_Room();
                     bgm.dispose();
-                    MyGame.setActiveScreen(MyGame.level_4);
+                    MyGame.setActiveScreen(MyGame.startRoom);
                 }
             }
         });

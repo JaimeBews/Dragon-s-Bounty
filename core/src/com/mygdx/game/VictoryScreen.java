@@ -91,10 +91,10 @@ public class VictoryScreen extends ScreenBeta {
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
 
-                MyGame.level_4 = null ;
-                    MyGame.level_4 = new Level_4();
+                MyGame.startRoom = null ;
+                    MyGame.startRoom = new Start_Room();
                     bgm.dispose();
-                    MyGame.setActiveScreen(MyGame.level_4);
+                    MyGame.setActiveScreen(MyGame.startRoom);
 
 
             }

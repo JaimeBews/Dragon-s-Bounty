@@ -15,7 +15,7 @@ import com.mygdx.game.ScreenBeta;
  * Created by markapptist on 2018-11-12.
  */
 
-public class Level_1 extends GameScreenUI {
+public class Bandit_Room_2 extends GameScreenUI {
 
 
 

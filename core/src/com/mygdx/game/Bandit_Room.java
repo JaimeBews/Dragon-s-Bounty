@@ -1,41 +1,35 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.mygdx.game.ActorBeta;
-import com.mygdx.game.BlueRanger;
-import com.mygdx.game.ScreenBeta;
 
 /**
  * Created by markapptist on 2018-11-12.
  */
 
-public class Level_10 extends GameScreenUI {
+public class Bandit_Room extends GameScreenUI {
 
+
+
+    Cowboy cowboy;
     ActorBeta foreground;
     ActorBeta background;
     //ActorBeta sideBoundaryR;
     //ActorBeta sideBoundaryL;
     //ActorBeta sideBoundaryL2;
     //ActorBeta topBoundary;
-    //ActorBeta bottomBoundary;
+    //ctorBeta bottomBoundary;
 
-    ActorBeta iceWall;
     ActorBeta fireWall;
+    ActorBeta iceWall;
     @Override
     public void initialize() {
         super.initialize();
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
         foreground = new ActorBeta(0, 0, mainStage);
-        foreground.loadTexture("Level Assets/LevelJ.png");
+        foreground.loadTexture("Level Assets/LevelE.png");
         foreground.setSize(WIDTH, HEIGHT);
 
-        bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Bit Bit Loop.mp3"));
+        bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Chronos.mp3"));
         bgm.play();
         bgm.setLooping(true);
         uiStage.addActor(tableContainer);
@@ -59,13 +53,6 @@ public class Level_10 extends GameScreenUI {
         topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
         topBoundary.setBoundaryRectangle();
 */
-        iceWall = new ActorBeta(0,0,mainStage);
-        iceWall.loadTexture("sprites/myBackgrounds/ice.png");
-        iceWall.setSize(leftTransition.getWidth()*2, leftTransition.getHeight()*2);
-        iceWall.setPosition(leftTransition.getX(), leftTransition.getY()-leftTransition.getHeight()/2);
-        iceWall.setBoundaryRectangle();
-        iceWall.setName("IceWall");
-
         fireWall = new ActorBeta(0,0,mainStage);
         fireWall.loadTexture("sprites/myBackgrounds/fire.png");
         fireWall.setSize(downTransition.getWidth()*2, downTransition.getHeight()*2);
@@ -73,14 +60,24 @@ public class Level_10 extends GameScreenUI {
         fireWall.setBoundaryRectangle();
         fireWall.setName("FireWall");
 
+        iceWall = new ActorBeta(0,0,mainStage);
+        iceWall.loadTexture("sprites/myBackgrounds/ice.png");
+        iceWall.setSize(upTransition.getWidth()*2, upTransition.getHeight()*2);
+        iceWall.setPosition(upTransition.getX()-upTransition.getWidth()/2, upTransition.getY()-upTransition.getHeight());
+        iceWall.setBoundaryRectangle();
+        iceWall.setName("IceWall");
+
         /*background = new ActorBeta(900, 300, mainStage);
         background.loadTexture("sprites/backgrounds/background0_20.png");
         background.setScale(2.0f);
 
-        //CREATE BLUE RANGER*/
-        blueRanger =MyGame.blueRanger;
 
-        //MyGame.blueRanger=blueRanger;
+        //CREATE BLUE RANGER*/
+
+        cowboy = new Cowboy();
+        cowboy.setPosition(WIDTH / 4, HEIGHT / 3);
+        mainStage.addActor(cowboy);
+        blueRanger = MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
@@ -92,42 +89,40 @@ public class Level_10 extends GameScreenUI {
         blueRanger.preventOverlap(Bottom_Collider);
         blueRanger.preventOverlap(Left_Collider);
         blueRanger.preventOverlap(Right_Collider);
-        blueRanger.preventOverlap(iceWall);
         blueRanger.preventOverlap(fireWall);
+        blueRanger.preventOverlap(iceWall);
         if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();
-                MyGame.level_2 = null;
-                MyGame.level_2 = new Level_2();
-                MyGame.setActiveScreen(MyGame.level_2);
-                MyGame.level_10=null;
+                MyGame.banditRoom2 = null;
+                MyGame.banditRoom2 = new Bandit_Room_2();
+                MyGame.setActiveScreen(MyGame.banditRoom2);
             }
         if(blueRanger!=null&& rightTransition!=null)
             if(blueRanger.overlaps(rightTransition)){
                 bgm.dispose();
-                MyGame.level_5 = null;
-                MyGame.level_5 = new Level_5();
-                MyGame.setActiveScreen(MyGame.level_5);
+                MyGame.banditBossRoom = null;
+                MyGame.banditBossRoom = new Bandit_Boss_Room();
+                MyGame.setActiveScreen(MyGame.banditBossRoom);
             }
         if(blueRanger!=null&& leftTransition!=null)
             if(blueRanger.overlaps(leftTransition)){
                 bgm.dispose();
-                MyGame.level_8 = null;
-                MyGame.level_8 = new Level_8();
-                MyGame.setActiveScreen(MyGame.level_8);
+                MyGame.hubRoom = null;
+                MyGame.hubRoom = new Hub_Room();
+                MyGame.setActiveScreen(MyGame.hubRoom);
             }
         if(blueRanger!=null&& upTransition!=null)
             if(blueRanger.overlaps(upTransition)){
                 bgm.dispose();
-                MyGame.level_4 = null;
-                MyGame.level_4 = new Level_4();
-                MyGame.setActiveScreen(MyGame.level_4);
+                MyGame.brigandBossRoom = null;
+                MyGame.brigandBossRoom = new Brigand_Boss_Room();
+                MyGame.setActiveScreen(MyGame.brigandBossRoom);
             }
         super.update(dt);
         blueRanger.act(dt);
         blueRanger.boundToWorld();
     }
-
 
 
 

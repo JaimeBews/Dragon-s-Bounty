@@ -1,18 +1,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * Created by markapptist on 2018-11-12.
  */
 
-public class Level_9 extends GameScreenUI {
+public class Buccaneer_Boss_Room extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
@@ -72,9 +66,9 @@ public class Level_9 extends GameScreenUI {
         if(blueRanger!=null&& rightTransition!=null)
             if(blueRanger.overlaps(rightTransition)){
                 bgm.dispose();
-                MyGame.level_2 = null;
-                MyGame.level_2 = new Level_2();
-                MyGame.setActiveScreen(MyGame.level_2);
+                MyGame.buccaneerRoom = null;
+                MyGame.buccaneerRoom = new Buccaneer_Room();
+                MyGame.setActiveScreen(MyGame.buccaneerRoom);
             }
 
         super.update(dt);

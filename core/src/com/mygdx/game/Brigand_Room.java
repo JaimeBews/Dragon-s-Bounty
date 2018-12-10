@@ -1,18 +1,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * Created by markapptist on 2018-11-12.
  */
 
-public class Level_8 extends GameScreenUI {
+public class Brigand_Room extends GameScreenUI {
 
     Pirate pirate;
     ActorBeta foreground;
@@ -77,23 +71,23 @@ public class Level_8 extends GameScreenUI {
         if(blueRanger!=null&& rightTransition!=null)
             if(blueRanger.overlaps(rightTransition)){
                 bgm.dispose();
-                MyGame.level_10 = null;
-                MyGame.level_10 = new Level_10();
-                MyGame.setActiveScreen(MyGame.level_10);
+                MyGame.hubRoom = null;
+                MyGame.hubRoom = new Hub_Room();
+                MyGame.setActiveScreen(MyGame.hubRoom);
             }
         if(blueRanger!=null&& leftTransition!=null)
             if(blueRanger.overlaps(leftTransition)){
                 bgm.dispose();
-                MyGame.level_11 = null;
-                MyGame.level_11 = new Level_11();
-                MyGame.setActiveScreen(MyGame.level_11);
+                MyGame.itemRoom = null;
+                MyGame.itemRoom = new Item_Room();
+                MyGame.setActiveScreen(MyGame.itemRoom);
             }
         if(blueRanger!=null&& upTransition!=null)
             if(blueRanger.overlaps(upTransition)){
                 bgm.dispose();
-                MyGame.level_3 = null;
-                MyGame.level_3 = new Level_3();
-                MyGame.setActiveScreen(MyGame.level_3);
+                MyGame.treasureRoom = null;
+                MyGame.treasureRoom = new Treasure_Room();
+                MyGame.setActiveScreen(MyGame.treasureRoom);
             }
         super.update(dt);
         blueRanger.act(dt);

@@ -1,19 +1,12 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * Created by markapptist on 2018-11-12.
  */
 
-public class Level_7 extends GameScreenUI {
+public class Bandit_Boss_Room extends GameScreenUI {
     boolean ismovingleft=false;
     boolean ismovingright = false;
     boolean ismovingup = false;
@@ -159,9 +152,9 @@ public class Level_7 extends GameScreenUI {
         if(blueRanger!=null&& leftTransition!=null)
             if(blueRanger.overlaps(leftTransition)){
                 bgm.dispose();
-                MyGame.level_5 = null;
-                MyGame.level_5 = new Level_5();
-                MyGame.setActiveScreen(MyGame.level_5);
+                MyGame.banditRoom = null;
+                MyGame.banditRoom = new Bandit_Room();
+                MyGame.setActiveScreen(MyGame.banditRoom);
             }
 
         super.update(dt);
