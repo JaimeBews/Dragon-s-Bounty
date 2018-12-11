@@ -152,7 +152,7 @@ public class Bandit_Boss_Room extends GameScreenUI {
         }
         if(blueRanger!=null&& leftTransition!=null)
             if(blueRanger.overlaps(leftTransition)){
-                bgm.dispose();
+                //bgm.dispose();
                 MyGame.banditRoom = null;
                 MyGame.banditRoom = new Bandit_Room();
                 MyGame.setActiveScreen(MyGame.banditRoom);
