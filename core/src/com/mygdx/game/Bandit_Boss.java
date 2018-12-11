@@ -4,9 +4,9 @@ package com.mygdx.game;
  * Created by markapptist on 2018-11-12.
  */
 
-public class Cowboy extends PowerRanger {
+public class Bandit_Boss extends PowerRanger {
     float speed;
-    Cowboy() {
+    Bandit_Boss() {
     speed=5;
 
         idle = loadAnimationFromSheet("sprites/Macs/cowboy side.png",1,5,0.3f,true);
