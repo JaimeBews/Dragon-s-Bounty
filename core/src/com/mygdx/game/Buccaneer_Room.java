@@ -13,6 +13,8 @@ public class Buccaneer_Room extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
+    PirateA pirateA1;
+    PirateA pirateA2;
 /*
     ActorBeta sideBoundaryR;
     ActorBeta sideBoundaryL;
@@ -58,6 +60,14 @@ public class Buccaneer_Room extends GameScreenUI {
 
         //CREATE BLUE RANGER*/
 
+        pirateA1 = new PirateA();
+        pirateA1.setPosition(WIDTH / 6, HEIGHT / 1.5f);
+        mainStage.addActor(pirateA1);
+
+        pirateA2 = new PirateA();
+        pirateA2.setPosition(WIDTH / 6, HEIGHT / 6);
+        mainStage.addActor(pirateA2);
+
         blueRanger = MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
@@ -87,6 +97,8 @@ public class Buccaneer_Room extends GameScreenUI {
         super.update(dt);
         blueRanger.act(dt);
         blueRanger.boundToWorld();
+        pirateA1.act(dt);
+        pirateA2.act(dt);
     }
 
 

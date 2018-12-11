@@ -8,9 +8,11 @@ import com.badlogic.gdx.Gdx;
 
 public class Brigand_Room extends GameScreenUI {
 
-    Pirate pirate;
     ActorBeta foreground;
     ActorBeta background;
+    Brigand brigand1;
+    Brigand brigand2;
+
     //ActorBeta sideBoundaryR;
     //ActorBeta sideBoundaryL;
     //ActorBeta sideBoundaryL2;
@@ -52,11 +54,16 @@ public class Brigand_Room extends GameScreenUI {
         background.setScale(2.0f);
 
         //CREATE BLUE RANGER*/
-        pirate = new Pirate();
 
-        pirate.setPosition(WIDTH / 2, HEIGHT / 3);
+        brigand1 = new Brigand();
+        brigand1.setPosition(WIDTH / 6, HEIGHT / 6);
+        mainStage.addActor(brigand1);
+
+        brigand2 = new Brigand();
+        brigand2.setPosition(WIDTH / 6, HEIGHT / 1.5f);
+        mainStage.addActor(brigand2);
+
         blueRanger = MyGame.blueRanger;
-        mainStage.addActor(pirate);
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
@@ -92,6 +99,9 @@ public class Brigand_Room extends GameScreenUI {
         super.update(dt);
         blueRanger.act(dt);
         blueRanger.boundToWorld();
+        brigand1.act(dt);
+        brigand2.act(dt);
+
     }
 
 

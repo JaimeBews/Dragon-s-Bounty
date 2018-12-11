@@ -1,34 +1,40 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * Created by markapptist on 2018-11-12.
  */
 
-public class Buccaneer_Boss_Room extends GameScreenUI {
+public class Level_6 extends GameScreenUI {
+
 
     ActorBeta foreground;
     ActorBeta background;
-    Cowboy cowboy;
-    //ActorBeta sideBoundaryR;
-    //ActorBeta sideBoundaryL;
-    //ActorBeta sideBoundaryL2;
-    //ActorBeta topBoundary;
-    //ActorBeta bottomBoundary;
+    ActorBeta sideBoundaryR;
+    ActorBeta sideBoundaryL;
+    ActorBeta sideBoundaryL2;
+    ActorBeta topBoundary;
+    ActorBeta bottomBoundary;
+    EvilPrincess evilPrincess;
     @Override
     public void initialize() {
         super.initialize();
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
         foreground = new ActorBeta(0, 0, mainStage);
-        foreground.loadTexture("Level Assets/LevelI.png");
+        foreground.loadTexture("Level Assets/LevelF.png");
         foreground.setSize(WIDTH, HEIGHT);
 
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Chronos.mp3"));
         bgm.play();
         bgm.setLooping(true);
         uiStage.addActor(tableContainer);
-/*
         sideBoundaryL = new ActorBeta(0,0,mainStage);
         sideBoundaryL.setSize(WIDTH/20.0f, 1000);
         // SideBoundaryL.setPosition(WIDTH / 1.3f, HEIGHT);
@@ -47,17 +53,15 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         topBoundary.setSize(1800, 100);
         topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
         topBoundary.setBoundaryRectangle();
+        evilPrincess = new EvilPrincess();
+        evilPrincess.setPosition(WIDTH / 4, HEIGHT / 3);
+        mainStage.addActor(evilPrincess);
         /*background = new ActorBeta(900, 300, mainStage);
         background.loadTexture("sprites/backgrounds/background0_20.png");
         background.setScale(2.0f);
 
         //CREATE BLUE RANGER*/
-
-        cowboy = new Cowboy();
-        cowboy.setPosition(WIDTH / 4, HEIGHT / 3);
-        mainStage.addActor(cowboy);
-
-        blueRanger = MyGame.blueRanger;
+        blueRanger = new BlueRanger();
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
@@ -65,17 +69,18 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
 
     @Override
     public void update(float dt) {
-        blueRanger.preventOverlap(Top_Collider);
-        blueRanger.preventOverlap(Right_Collider);
-        blueRanger.preventOverlap(Top_Collider);
-        blueRanger.preventOverlap(Bottom_Collider);
-        if(blueRanger!=null&& rightTransition!=null)
-            if(blueRanger.overlaps(rightTransition)){
+        blueRanger.preventOverlap(sideBoundaryL);
+        blueRanger.preventOverlap(sideBoundaryR);
+        blueRanger.preventOverlap(bottomBoundary);
+        blueRanger.preventOverlap(topBoundary);
+        if(blueRanger!=null&& downTransition!=null)
+            if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();
-                MyGame.buccaneerRoom = null;
-                MyGame.buccaneerRoom = new Buccaneer_Room();
-                MyGame.setActiveScreen(MyGame.buccaneerRoom);
+             //   MyGame.level_5 = null;
+              //  MyGame.level_5 = new Level_5();
+              //  MyGame.setActiveScreen(MyGame.level_5);
             }
+
 
         super.update(dt);
         blueRanger.act(dt);

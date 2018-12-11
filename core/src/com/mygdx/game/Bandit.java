@@ -15,10 +15,10 @@ public class Bandit extends EnemyBase {
         walkUp = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditWalkUp.png",1,2,0.3f,true);
         walkDown = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditWalkDown.png",1,2,0.3f,true);
 
-        attackLeft = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditAttackLeft.png",1,2,0.8f,true);
-        attackRight = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditAttackRight.png",1,2,0.8f,true);
-        attackUp = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditAttackUp.png",1,2,0.8f,true);
-        attackDown = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditAttackDown.png",1,2,0.8f,true);
+        attackLeft = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditAttackLeft.png",1,2,1.0f,true);
+        attackRight = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditAttackRight.png",1,2,1.0f,true);
+        attackUp = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditAttackUp.png",1,2,1.0f,true);
+        attackDown = loadAnimationFromSheet("sprites/Dennis/BanditAnim/BanditAttackDown.png",1,2,1.0f,true);
 
 
 
@@ -60,49 +60,59 @@ public class Bandit extends EnemyBase {
     }
 
     private void SetAnimations(){
-        if(this.attack == false) {
+        if(this.attack == false && this.move == true) {
             if (movedir == 0) {
-                this.setAnimation(idle);
+                this.setAnimation(this.idle);
             } else if (movedir == 1) {
-                this.setAnimation(walkLeft);
+                this.setAnimation(this.walkLeft);
             } else if (movedir == 2) {
-                this.setAnimation(walkRight);
+                this.setAnimation(this.walkRight);
             } else if (movedir == 3) {
-                this.setAnimation(walkUp);
+                this.setAnimation(this.walkUp);
             } else if (movedir == 4) {
-                this.setAnimation(walkDown);
+                this.setAnimation(this.walkDown);
             }
         }else if(this.attack == true && this.move == false)
         {
             if (movedir == 0) {
-                this.setAnimation(attackUp);
-                if(isAnimationFinished()) {
+                this.setAnimation(this.attackUp);
+                if(this.isAnimationFinished()) {
                     this.attack = false;
                     this.move = true;
+                    other.takeDamage(1);
+                    attackDelay = 5.0f;
                 }
             } else if (movedir == 1) {
-                this.setAnimation(attackLeft);
-                if(isAnimationFinished()) {
+                this.setAnimation(this.attackLeft);
+                if(this.isAnimationFinished()) {
                     this.attack = false;
                     this.move = true;
+                    other.takeDamage(1);
+                    attackDelay = 5.0f;
                 }
             } else if (movedir == 2) {
-                this.setAnimation(attackRight);
-                if(isAnimationFinished()) {
+                this.setAnimation(this.attackRight);
+                if(this.isAnimationFinished()) {
                     this.attack = false;
                     this.move = true;
+                    other.takeDamage(1);
+                    attackDelay = 5.0f;
                 }
             } else if (movedir == 3) {
-                this.setAnimation(attackUp);
-                if(isAnimationFinished()) {
+                this.setAnimation(this.attackUp);
+                if(this.isAnimationFinished()) {
                     this.attack = false;
                     this.move = true;
+                    other.takeDamage(1);
+                    attackDelay = 5.0f;
                 }
             } else if (movedir == 4) {
-                this.setAnimation(attackDown);
-                if(isAnimationFinished()) {
+                this.setAnimation(this.attackDown);
+                if(this.isAnimationFinished()) {
                     this.attack = false;
                     this.move = true;
+                    other.takeDamage(1);
+                    attackDelay = 5.0f;
                 }
             }
         }

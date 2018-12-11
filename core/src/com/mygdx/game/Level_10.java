@@ -1,38 +1,42 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.mygdx.game.ActorBeta;
+import com.mygdx.game.BlueRanger;
+import com.mygdx.game.ScreenBeta;
 
-/**
- * Created by markapptist on 2018-11-12.
- */
 
-public class Bandit_Room extends GameScreenUI {
+public class Level_10 extends GameScreenUI {
 
-
-    Bandit bandit;
     ActorBeta foreground;
     ActorBeta background;
-    //ActorBeta sideBoundaryR;
-    //ActorBeta sideBoundaryL;
-    //ActorBeta sideBoundaryL2;
-    //ActorBeta topBoundary;
-    //ctorBeta bottomBoundary;
+    ActorBeta sideBoundaryR;
+    ActorBeta sideBoundaryL;
+    ActorBeta sideBoundaryL2;
+    ActorBeta topBoundary;
+    ActorBeta bottomBoundary;
 
-    ActorBeta fireWall;
     ActorBeta iceWall;
+    ActorBeta fireWall;
     @Override
     public void initialize() {
         super.initialize();
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
         foreground = new ActorBeta(0, 0, mainStage);
-        foreground.loadTexture("Level Assets/LevelE.png");
+        foreground.loadTexture("Level Assets/LevelJ.png");
         foreground.setSize(WIDTH, HEIGHT);
 
-        bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Chronos.mp3"));
+        bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Bit Bit Loop.mp3"));
         bgm.play();
         bgm.setLooping(true);
         uiStage.addActor(tableContainer);
-/*
+
         sideBoundaryL = new ActorBeta(0,0,mainStage);
         sideBoundaryL.setSize(WIDTH/20.0f, 1000);
         // SideBoundaryL.setPosition(WIDTH / 1.3f, HEIGHT);
@@ -51,7 +55,14 @@ public class Bandit_Room extends GameScreenUI {
         topBoundary.setSize(1800, 100);
         topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
         topBoundary.setBoundaryRectangle();
-*/
+
+        iceWall = new ActorBeta(0,0,mainStage);
+        iceWall.loadTexture("sprites/myBackgrounds/ice.png");
+        iceWall.setSize(leftTransition.getWidth()*2, leftTransition.getHeight()*2);
+        iceWall.setPosition(leftTransition.getX(), leftTransition.getY()-leftTransition.getHeight()/2);
+        iceWall.setBoundaryRectangle();
+        iceWall.setName("IceWall");
+
         fireWall = new ActorBeta(0,0,mainStage);
         fireWall.loadTexture("sprites/myBackgrounds/fire.png");
         fireWall.setSize(downTransition.getWidth()*2, downTransition.getHeight()*2);
@@ -59,26 +70,14 @@ public class Bandit_Room extends GameScreenUI {
         fireWall.setBoundaryRectangle();
         fireWall.setName("FireWall");
 
-        iceWall = new ActorBeta(0,0,mainStage);
-        iceWall.loadTexture("sprites/myBackgrounds/ice.png");
-        iceWall.setSize(upTransition.getWidth()*2, upTransition.getHeight()*2);
-        iceWall.setPosition(upTransition.getX()-upTransition.getWidth()/2, upTransition.getY()-upTransition.getHeight());
-        iceWall.setBoundaryRectangle();
-        iceWall.setName("IceWall");
-
-        bandit = new Bandit();
-        bandit.setPosition(WIDTH/1.1f, HEIGHT / 2);
-        mainStage.addActor(bandit);
-
         /*background = new ActorBeta(900, 300, mainStage);
         background.loadTexture("sprites/backgrounds/background0_20.png");
         background.setScale(2.0f);
 
-
-
-
         //CREATE BLUE RANGER*/
-        blueRanger = MyGame.blueRanger;
+        blueRanger =MyGame.blueRanger;
+
+        MyGame.blueRanger=blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
@@ -86,45 +85,46 @@ public class Bandit_Room extends GameScreenUI {
 
     @Override
     public void update(float dt) {
-        blueRanger.preventOverlap(Top_Collider);
-        blueRanger.preventOverlap(Bottom_Collider);
-        blueRanger.preventOverlap(Left_Collider);
-        blueRanger.preventOverlap(Right_Collider);
-        blueRanger.preventOverlap(fireWall);
+        blueRanger.preventOverlap(sideBoundaryL);
+        blueRanger.preventOverlap(sideBoundaryR);
+        blueRanger.preventOverlap(bottomBoundary);
+        blueRanger.preventOverlap(topBoundary);
         blueRanger.preventOverlap(iceWall);
+        blueRanger.preventOverlap(fireWall);
         if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();
-                MyGame.banditRoom2 = null;
-                MyGame.banditRoom2 = new Bandit_Room_2();
-                MyGame.setActiveScreen(MyGame.banditRoom2);
+              //  MyGame.level_2 = null;
+              //  MyGame.level_2 = new Level_2();
+              //  MyGame.setActiveScreen(MyGame.level_2);
+               // MyGame.level_10=null;
             }
         if(blueRanger!=null&& rightTransition!=null)
             if(blueRanger.overlaps(rightTransition)){
                 bgm.dispose();
-                MyGame.banditBossRoom = null;
-                MyGame.banditBossRoom = new Bandit_Boss_Room();
-                MyGame.setActiveScreen(MyGame.banditBossRoom);
+              //  MyGame.level_5 = null;
+               // MyGame.level_5 = new Level_5();
+               // MyGame.setActiveScreen(MyGame.level_5);
             }
         if(blueRanger!=null&& leftTransition!=null)
             if(blueRanger.overlaps(leftTransition)){
                 bgm.dispose();
-                MyGame.hubRoom = null;
-                MyGame.hubRoom = new Hub_Room();
-                MyGame.setActiveScreen(MyGame.hubRoom);
+               // MyGame.level_8 = null;
+               // MyGame.level_8 = new Level_8();
+               // MyGame.setActiveScreen(MyGame.level_8);
             }
         if(blueRanger!=null&& upTransition!=null)
             if(blueRanger.overlaps(upTransition)){
                 bgm.dispose();
-                MyGame.brigandBossRoom = null;
-                MyGame.brigandBossRoom = new Brigand_Boss_Room();
-                MyGame.setActiveScreen(MyGame.brigandBossRoom);
+              //  MyGame.level_4 = null;
+              //  MyGame.level_4 = new Level_4();
+              //  MyGame.setActiveScreen(MyGame.level_4);
             }
         super.update(dt);
         blueRanger.act(dt);
-        bandit.act(dt);
         blueRanger.boundToWorld();
     }
+
 
 
 

@@ -11,6 +11,8 @@ public class Item_Room extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
+    Brigand brigand1;
+    Brigand brigand2;
     //ActorBeta sideBoundaryR;
     //ActorBeta sideBoundaryL;
     //ActorBeta sideBoundaryL2;
@@ -53,6 +55,15 @@ public class Item_Room extends GameScreenUI {
         background.setScale(2.0f);
 
         //CREATE BLUE RANGER*/
+
+        brigand1 = new Brigand();
+        brigand1.setPosition(WIDTH / 1.1f, HEIGHT / 6);
+        mainStage.addActor(brigand1);
+
+        brigand2 = new Brigand();
+        brigand2.setPosition(WIDTH / 1.1f, HEIGHT / 1.5f);
+        mainStage.addActor(brigand2);
+
         blueRanger = new BlueRanger();
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
@@ -76,6 +87,8 @@ public class Item_Room extends GameScreenUI {
         super.update(dt);
         blueRanger.act(dt);
         blueRanger.boundToWorld();
+        brigand1.act(dt);
+        brigand2.act(dt);
     }
 
 

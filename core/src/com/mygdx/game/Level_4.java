@@ -1,21 +1,29 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * Created by markapptist on 2018-11-12.
  */
 
-public class Start_Room extends GameScreenUI {
-
+public class Level_4 extends GameScreenUI {
+    PirateA pirateA;
     Princess princess;
+    Bandit bandit;
+    Brigand brigand;
     ActorBeta foreground;
     ActorBeta background;
-    //ActorBeta bottomBoundary;//ALJON LOOK HERE
-    //ActorBeta bottomBoundaryL;
-    //ActorBeta sideBoundaryL;
-    //ActorBeta sideBoundaryR;
-    //ActorBeta topBoundary;
+    ActorBeta bottomBoundary;//ALJON LOOK HERE
+    ActorBeta bottomBoundaryL;
+    ActorBeta sideBoundaryL;
+    ActorBeta sideBoundaryR;
+    ActorBeta topBoundary;
     @Override
     public void initialize() {
         super.initialize();
@@ -23,7 +31,7 @@ public class Start_Room extends GameScreenUI {
         foreground = new ActorBeta(0, 0, mainStage);
         foreground.loadTexture("Level Assets/LevelD.png");
         foreground.setSize(WIDTH, HEIGHT);
-/*
+
         bottomBoundary = new ActorBeta(0,0,mainStage);
         bottomBoundary.setSize(WIDTH/2,100);
         bottomBoundary.setBoundaryRectangle();
@@ -47,7 +55,7 @@ public class Start_Room extends GameScreenUI {
         topBoundary.setSize(1800, 100);
          topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
         topBoundary.setBoundaryRectangle();
-*/
+
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Beat One.mp3"));
         bgm.play();
         bgm.setLooping(true);
@@ -65,36 +73,50 @@ public class Start_Room extends GameScreenUI {
         mainStage.addActor(princess);
 
         blueRanger =MyGame.blueRanger;
-        //MyGame.blueRanger = blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
 
         loadUI();
 
+        pirateA = new PirateA();
+        pirateA.setPosition(WIDTH / 4, HEIGHT / 6);
+        mainStage.addActor(pirateA);
+
+        brigand = new Brigand();
+        brigand.setPosition(WIDTH / 1.3f, HEIGHT / 6);
+        mainStage.addActor(brigand);
+
+
+        bandit = new Bandit();
+        bandit.setPosition(WIDTH / 2, HEIGHT / 6);
+        mainStage.addActor(bandit);
 
     }
 
     @Override
     public void update(float dt) {
 
-        blueRanger.preventOverlap(Top_Collider);
-        blueRanger.preventOverlap(Bottom_Collider);
-        blueRanger.preventOverlap(Right_Collider);
-        blueRanger.preventOverlap(Left_Collider);
-        //blueRanger.preventOverlap(topBoundary);
+        blueRanger.preventOverlap(bottomBoundary);
+        blueRanger.preventOverlap(bottomBoundaryL);
+        blueRanger.preventOverlap(sideBoundaryL);
+        blueRanger.preventOverlap(sideBoundaryR);
+        blueRanger.preventOverlap(topBoundary);
         if(blueRanger.overlaps(princess)){
             blueRanger.health=2;
         }
          if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();
-                MyGame.hubRoom = null;
-                MyGame.hubRoom = new Hub_Room();
-                MyGame.setActiveScreen(MyGame.hubRoom);
-                MyGame.startRoom =null;
+              //  MyGame.level_10 = null;
+               // MyGame.level_10 = new Level_10();
+               // MyGame.setActiveScreen(MyGame.level_10);
+               // MyGame.level_4=null;
                 }
         super.update(dt);
         blueRanger.act(dt);
+        bandit.act(dt);
+        pirateA.act(dt);
+        brigand.act(dt);
         blueRanger.boundToWorld();
     }
 

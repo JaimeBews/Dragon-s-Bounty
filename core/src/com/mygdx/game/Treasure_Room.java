@@ -11,6 +11,8 @@ public class Treasure_Room extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
+    Bandit bandit1;
+    Bandit bandit2;
     //ActorBeta sideBoundaryR;
     //ActorBeta sideBoundaryL;
     //ActorBeta sideBoundaryL2;
@@ -53,6 +55,15 @@ public class Treasure_Room extends GameScreenUI {
         background.setScale(2.0f);
 
         //CREATE BLUE RANGER*/
+
+        bandit1 = new Bandit();
+        bandit1.setPosition(WIDTH / 6, HEIGHT / 6);
+        mainStage.addActor(bandit1);
+
+        bandit2 = new Bandit();
+        bandit2.setPosition(WIDTH / 1.5f, HEIGHT / 6);
+        mainStage.addActor(bandit2);
+
         blueRanger = MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
@@ -76,6 +87,8 @@ public class Treasure_Room extends GameScreenUI {
         super.update(dt);
         blueRanger.act(dt);
         blueRanger.boundToWorld();
+        bandit1.act(dt);
+        bandit1.act(dt);
     }
 
 

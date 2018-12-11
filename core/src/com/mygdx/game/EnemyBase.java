@@ -21,6 +21,7 @@ public class EnemyBase extends ActorBeta {
     boolean move  = true;
     boolean attack = false;
     int movedir =0;
+    int attackdir = 0;
     BlueRanger other;
     float attackDelay = 2.0f;
     EnemyBase(){
@@ -59,8 +60,7 @@ public class EnemyBase extends ActorBeta {
                     if(endPos.x == 0.0f && endPos.y == 0.0f){
                         this.movedir =0;
                     }
-
-                    if (endPos.x < 0.0f)
+                    else if (endPos.x < 0.0f)
                     {
                         this.movedir =1;
                     }else if (endPos.x > 0.0f)
@@ -77,11 +77,32 @@ public class EnemyBase extends ActorBeta {
                 }
             }
             if (this.overlaps(other) == true && attackDelay < 0.0f) {
-                this.attack =true;
+                this.attack = true;
                 this.move = false;
+
+                if(movedir == 0){
+                    this.attackdir =1;
+                    this.movedir =5;
+                }
+                else if (movedir == 1)
+                {
+                    this.attackdir =1;
+                    this.movedir =5;
+                }else if (movedir == 2)
+                {
+                    this.attackdir =2;
+                    this.movedir =5;
+                }
+                else if (movedir == 3)
+                {
+                    this.attackdir =3;
+                    this.movedir =5;
+                }else if (movedir == 4)
+                {
+                    this.attackdir =4;
+                    this.movedir =5;
+                }
                 System.out.println("Imma hitting you");
-                other.takeDamage(1);
-                attackDelay = 5.0f;
             }
         }
 
@@ -97,6 +118,9 @@ public class EnemyBase extends ActorBeta {
             Gdx.app.log("test", "enemy is null" );
         }
     }
-    public void kill(){this.remove();}
+    public void kill(){
+        this.remove();
+        this.setX(1000000.0f);
+    }
 }
 
