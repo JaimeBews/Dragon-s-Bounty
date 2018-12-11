@@ -59,6 +59,10 @@ public class GameScreenUI extends ScreenBeta {
     boolean pause;
     int faceDir;//left right up down
     int attackType;//fire ice bite
+
+    boolean fireUnlocked =false;
+    boolean iceUnlocked =false;
+
     @Override
     public void initialize() {
         Colliders();
@@ -150,7 +154,7 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-                if(!isAttacking) {
+                if(!isAttacking&&iceUnlocked) {
                     breathSFX.play();
                     isAttacking = true;
                     attackType=1;
@@ -176,7 +180,7 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-                if(!isAttacking) {
+                if(!isAttacking&&fireUnlocked) {
                     breathSFX.play();
                     isAttacking = true;
                     attackType=2;
@@ -222,6 +226,12 @@ public class GameScreenUI extends ScreenBeta {
                 }
             }
         });
+    }
+    public void setFireUnlocked(){
+        fireUnlocked=true;
+    }
+    public void setIceUnlocked(){
+        iceUnlocked=true;
     }
     public void loadUI(){
 
