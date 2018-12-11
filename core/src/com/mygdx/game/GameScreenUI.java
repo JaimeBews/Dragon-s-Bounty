@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-
+import com.badlogic.gdx.utils.Array;
 
 
 /**
@@ -59,6 +59,10 @@ public class GameScreenUI extends ScreenBeta {
     boolean pause;
     int faceDir;//left right up down
     int attackType;//fire ice bite
+
+    boolean fireUnlocked =false;
+    boolean iceUnlocked =false;
+
     @Override
     public void initialize() {
         Colliders();
@@ -150,7 +154,7 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-                if(!isAttacking) {
+                if(!isAttacking&&iceUnlocked) {
                     breathSFX.play();
                     isAttacking = true;
                     attackType=1;
@@ -176,7 +180,7 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-                if(!isAttacking) {
+                if(!isAttacking&&fireUnlocked) {
                     breathSFX.play();
                     isAttacking = true;
                     attackType=2;
@@ -223,6 +227,12 @@ public class GameScreenUI extends ScreenBeta {
             }
         });
     }
+    public void setFireUnlocked(){
+        fireUnlocked=true;
+    }
+    public void setIceUnlocked(){
+        iceUnlocked=true;
+    }
     public void loadUI(){
 
         for(int i = 0; i<blueRanger.health; i++) {
@@ -261,20 +271,38 @@ public class GameScreenUI extends ScreenBeta {
         if(!pause) {
 
             touchpad.act(dt);
-            CheckDirection();
+
             SetAnimations(dt);
             CheckAttackCollisions();
-
-            blueRanger.setPosition(blueRanger.getX() + touchpad.getKnobPercentX() * (blueRanger.speed), blueRanger.getY() + touchpad.getKnobPercentY() * (blueRanger.speed));
+            if(!isAttacking) {
+                CheckDirection();
+                blueRanger.setPosition(blueRanger.getX() + touchpad.getKnobPercentX() * (blueRanger.speed), blueRanger.getY() + touchpad.getKnobPercentY() * (blueRanger.speed));
+            }
         }
     }
     private void CheckAttackCollisions(){
         if(mainStage.getRoot().findActor("Enemy")!=null&&attackBounds!=null) {
-            EnemyBase test = mainStage.getRoot().findActor("Enemy");
-            if(attackBounds.overlaps(test)) {
-                test.kill();
-                enemyDeathSFX.play();
+            Array<Actor> stageActors = mainStage.getActors();
+          //  EnemyBase test = mainStage.getRoot().findActor("Enemy");
+          //  if(attackBounds.overlaps(test)) {
+           //     test.kill();
+         //       enemyDeathSFX.play();
+          //  }
+
+            for(int i=0; i<stageActors.size; i++){
+                Actor a = stageActors.get(i);
+
+                if(a.getClass()==Bandit.class||a.getClass()==Brigand.class||a.getClass()==PirateA.class) {
+                    if (a != null ) {
+                        if (attackBounds.overlaps((EnemyBase) a)) {
+                            ((EnemyBase) a).kill();
+                            enemyDeathSFX.play();
+                            Gdx.app.log("tesssst",""+a);
+                        }
+                    }
+                }
             }
+
         }
         if(mainStage.getRoot().findActor("IceWall")!=null&&attackBounds!=null&&attackType==2) {
             ActorBeta test = mainStage.getRoot().findActor("IceWall");
@@ -360,6 +388,10 @@ public class GameScreenUI extends ScreenBeta {
 
         mainStage.addActor(fireBreath);
         fireBreath.centerAtActor(blueRanger);
+        if(faceDir==2)
+            fireBreath.setPosition(fireBreath.getX()+blueRanger.getWidth()/2,fireBreath.getY()+blueRanger.getHeight()/4);
+        else
+            fireBreath.setPosition(fireBreath.getX()-blueRanger.getWidth()/2,fireBreath.getY()+blueRanger.getHeight()/4);
     }
     private void runIceBreath(float scaleX){
         if(iceBreath!=null)
@@ -371,6 +403,10 @@ public class GameScreenUI extends ScreenBeta {
 
         mainStage.addActor(iceBreath);
         iceBreath.centerAtActor(blueRanger);
+        if(faceDir==2)
+            iceBreath.setPosition(iceBreath.getX()+blueRanger.getWidth()/2,iceBreath.getY()+blueRanger.getHeight()/4);
+        else
+            iceBreath.setPosition(iceBreath.getX()-blueRanger.getWidth()/2,iceBreath.getY()+blueRanger.getHeight()/4);
     }
 
     public void Colliders()

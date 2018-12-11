@@ -36,13 +36,14 @@ public class GameScreen extends GameScreenUI {
         uiStage.addActor(tableContainer);
 
         //CREATE BLUE RANGER
-        blueRanger = new BlueRanger();
+        blueRanger =MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
 
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Beat One.mp3"));
         bgm.play();
         bgm.setLooping(true);
+        bgm.setVolume(.2f);
         loadUI();
     }
 

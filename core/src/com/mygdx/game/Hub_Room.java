@@ -29,6 +29,7 @@ public class Hub_Room extends GameScreenUI {
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Bit Bit Loop.mp3"));
         bgm.play();
         bgm.setLooping(true);
+        bgm.setVolume(.1f);
         uiStage.addActor(tableContainer);
 /*
         sideBoundaryL = new ActorBeta(0,0,mainStage);

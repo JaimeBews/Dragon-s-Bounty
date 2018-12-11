@@ -36,7 +36,7 @@ public class Bandit_Room_2 extends GameScreenUI {
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Beat One.mp3"));
         bgm.play();
         bgm.setLooping(true);
-
+        bgm.setVolume(.2f);
         //background = new ActorBeta(900, 300, mainStage);
        // background.loadTexture("sprites/backgrounds/background0_20.png");
         //background.setScale(2.0f);

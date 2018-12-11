@@ -29,6 +29,7 @@ public class Item_Room extends GameScreenUI {
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Chronos.mp3"));
         bgm.play();
         bgm.setLooping(true);
+        bgm.setVolume(.2f);
         uiStage.addActor(tableContainer);
 /*
         sideBoundaryL = new ActorBeta(0,0,mainStage);
@@ -64,7 +65,7 @@ public class Item_Room extends GameScreenUI {
         brigand2.setPosition(WIDTH / 1.1f, HEIGHT / 1.5f);
         mainStage.addActor(brigand2);
 
-        blueRanger = new BlueRanger();
+        blueRanger =MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
