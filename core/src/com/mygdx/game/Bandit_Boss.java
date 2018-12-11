@@ -6,10 +6,11 @@ package com.mygdx.game;
 
 public class Bandit_Boss extends PowerRanger {
     float speed;
+    float health = 100;
     Bandit_Boss() {
     speed=5;
 
-        idle = loadAnimationFromSheet("sprites/Macs/cowboy side.png",1,5,0.3f,true);
+        idle = loadAnimationFromSheet("sprites/Macs/cowboy side2.png",1,8,0.3f,true);
      //  idle = loadAnimationFromFiles(idleString, 0.5f, true);
 
         this.setBoundaryRectangle();
@@ -28,5 +29,10 @@ public class Bandit_Boss extends PowerRanger {
     //    accelerateAtAngle(270);
      //   applyPhysics(dt);
     }
-
+    public void takeDamage(int damageTaken){
+        if(damageTaken>0)
+            health -= damageTaken;
+        if (health<0)
+            health = 0;
+    }
 }

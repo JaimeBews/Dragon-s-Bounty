@@ -10,7 +10,7 @@ public class Bandit_Boss_Room extends GameScreenUI {
     boolean ismovingleft=false;
     boolean ismovingright = false;
     boolean ismovingup = false;
-    boolean ismovingdown = false;
+    boolean ismovingdown = true;
     Vector2 DirToMove;
     float time;
     int i = 0;
@@ -36,7 +36,7 @@ public class Bandit_Boss_Room extends GameScreenUI {
         //bgm.play();
         //bgm.setLooping(true);
         //uiStage.addActor(tableContainer);
-
+        ismovingdown = true;
 /*
         Left_Collider = new ActorBeta();
         Left_Collider.setSize(10, HEIGHT/1.0f);
@@ -64,7 +64,7 @@ public class Bandit_Boss_Room extends GameScreenUI {
 
 */
         bandit_boss = new Bandit_Boss();
-        bandit_boss.setPosition(WIDTH/2,HEIGHT/2);
+        bandit_boss.setPosition(WIDTH-100,HEIGHT/2);
         bandit_boss.setSize(WIDTH/40,HEIGHT/20);
         bandit_boss.setBoundaryRectangle();
 
@@ -93,20 +93,20 @@ public class Bandit_Boss_Room extends GameScreenUI {
         bandit_boss.preventOverlap(Right_Collider);
         bandit_boss.preventOverlap(Bottom_Collider);
         bandit_boss.preventOverlap(Top_Collider);
-        if(i!=3 && dt!=0) {
-            time=0;
-            bandit_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
+        //if(i!=3 && dt!=0) {
+          //  time=0;
+            //bandit_boss.moveBy( 0.00f,  1.00f);
             if (bandit_boss.overlaps(Top_Collider)) {
-                DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
+                //DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
                 i += 1;
                 ismovingdown = true;
                 ismovingup = false;
             } else if (bandit_boss.overlaps(Bottom_Collider)) {
-                DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
+                //DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
                 ismovingdown = false;
                 ismovingup = true;
                 i += 1;
-            } else if (bandit_boss.overlaps(Right_Collider)) {
+            } /*else if (bandit_boss.overlaps(Right_Collider)) {
                 DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
                 ismovingright = false;
                 ismovingleft = true;
@@ -116,9 +116,9 @@ public class Bandit_Boss_Room extends GameScreenUI {
                 ismovingleft = false;
                 ismovingright = true;
                 i += 1;
-            }
-        }else if(i==3)
-        {
+            }*/
+        //}/*else if(i==3)
+        /*{
             ismovingleft = false;
             ismovingright = false;
             ismovingup = false;
@@ -128,28 +128,28 @@ public class Bandit_Boss_Room extends GameScreenUI {
         if(time>100)
         {
             i=0;
-        }
+        }*/
         //bandit_boss.boundToWorld();
         //DirToMove.nor();
         //Vector2 DirToMove = new Vector2((blueRanger.getX()-bandit_boss.getX()),(blueRanger.getY()-bandit_boss.getY()));
         //bandit_boss.moveBy(DirToMove.x,DirToMove.y);
 
-        //bandit_boss.moveBy(DirToMove.x*0.01f,DirToMove.y*0.01f);
+        //bandit_boss.moveBy(DirToMove.x*0.01f,DirToMove.y*0.01f);*/
         if (ismovingdown) {
 
-            bandit_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
+            bandit_boss.moveBy( 0.00f, -1.0f);
         }
         else if (ismovingup) {
 
-            bandit_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
-        }
+            bandit_boss.moveBy( 0.00f,  1.01f);
+        }/*
         else if (ismovingright) {
 
             bandit_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
         }else if (ismovingleft) {
 
             bandit_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
-        }
+        }*/
         if(blueRanger!=null&& leftTransition!=null)
             if(blueRanger.overlaps(leftTransition)){
                 //bgm.dispose();

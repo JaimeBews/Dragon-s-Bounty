@@ -20,6 +20,7 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
     float time;
     int i = 0;
 
+    BulletL bullet;
     Cowboy_Boss cowboy_boss;
     //ActorBeta sideBoundaryR;
     //ActorBeta sideBoundaryL;
@@ -66,6 +67,12 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         cowboy_boss = new Cowboy_Boss();
         cowboy_boss.setPosition(WIDTH / 4, HEIGHT / 3);
         mainStage.addActor(cowboy_boss);
+
+        bullet = new BulletL();
+        bullet.setPosition(WIDTH / 4, HEIGHT / 3);
+        //bullet.setSize(10,10);
+        //bullet.setBoundaryRectangle();
+        mainStage.addActor(bullet);
 
         blueRanger = MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
@@ -155,6 +162,8 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         super.update(dt);
         blueRanger.act(dt);
         blueRanger.boundToWorld();
+        bullet.act(dt);
+        bullet.boundToWorld();
     }
 
 
