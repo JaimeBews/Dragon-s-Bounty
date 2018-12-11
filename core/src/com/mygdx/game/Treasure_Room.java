@@ -61,7 +61,7 @@ public class Treasure_Room extends GameScreenUI {
         mainStage.addActor(bandit1);
 
         bandit2 = new Bandit();
-        bandit2.setPosition(WIDTH / 1.5f, HEIGHT / 6);
+        bandit2.setPosition(WIDTH / 1.3f, HEIGHT / 6);
         mainStage.addActor(bandit2);
 
         blueRanger = MyGame.blueRanger;

@@ -52,9 +52,11 @@ public class PirateA extends EnemyBase {
             } else if (movedir == 4) {
                 this.setAnimation(this.walkDown);
             }
-        }else if(this.attack == true && this.move == false)
+        }
+
+        if(this.attack == true && this.move == false)
         {
-            if (movedir == 0) {
+            if (attackdir == 0) {
                 this.setAnimation(this.attackUp);
                 if(this.isAnimationFinished()) {
                     this.attack = false;
@@ -62,7 +64,7 @@ public class PirateA extends EnemyBase {
                     other.takeDamage(1);
                     attackDelay = 5.0f;
                 }
-            } else if (movedir == 1) {
+            } else if (attackdir == 1) {
                 this.setAnimation(this.attackLeft);
                 if(this.isAnimationFinished()) {
                     this.attack = false;
@@ -70,7 +72,7 @@ public class PirateA extends EnemyBase {
                     other.takeDamage(1);
                     attackDelay = 5.0f;
                 }
-            } else if (movedir == 2) {
+            } else if (attackdir == 2) {
                 this.setAnimation(this.attackRight);
                 if(this.isAnimationFinished()) {
                     this.attack = false;
@@ -78,7 +80,7 @@ public class PirateA extends EnemyBase {
                     other.takeDamage(1);
                     attackDelay = 5.0f;
                 }
-            } else if (movedir == 3) {
+            } else if (attackdir == 3) {
                 this.setAnimation(this.attackUp);
                 if(this.isAnimationFinished()) {
                     this.attack = false;
@@ -86,7 +88,7 @@ public class PirateA extends EnemyBase {
                     other.takeDamage(1);
                     attackDelay = 5.0f;
                 }
-            } else if (movedir == 4) {
+            } else if (attackdir == 4) {
                 this.setAnimation(this.attackDown);
                 if(this.isAnimationFinished()) {
                     this.attack = false;
