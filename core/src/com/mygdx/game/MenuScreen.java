@@ -36,6 +36,7 @@ public class MenuScreen extends ScreenBeta {
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Chronos.mp3"));
         bgm.play();
         bgm.setLooping(true);
+        bgm.setVolume(.2f);
        // uiTable.background(skin.getDrawable("window-c"));
         background = new ActorBeta(0, 0, mainStage);
         background.loadTexture("sprites/myBackgrounds/Main Menu.png");

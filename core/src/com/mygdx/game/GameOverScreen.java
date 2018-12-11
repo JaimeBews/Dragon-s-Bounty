@@ -32,6 +32,7 @@ public class GameOverScreen extends ScreenBeta {
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Chronos.mp3"));
         bgm.play();
         bgm.setLooping(true);
+        bgm.setVolume(.2f);
         MyGame.gameScreen = null;
        // uiTable.background(skin.getDrawable("window-c"));
         background = new ActorBeta(0, 0, mainStage);

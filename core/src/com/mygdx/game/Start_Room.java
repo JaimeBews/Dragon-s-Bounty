@@ -51,6 +51,7 @@ public class Start_Room extends GameScreenUI {
         bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Beat One.mp3"));
         bgm.play();
         bgm.setLooping(true);
+        bgm.setVolume(.2f);
         uiStage.addActor(tableContainer);
 
         /*background = new ActorBeta(900, 300, mainStage);
