@@ -312,6 +312,12 @@ public class GameScreenUI extends ScreenBeta {
                 ((Bandit_Boss)test).takeDamage(1);
             }
         }
+        if(mainStage.getRoot().findActor("EvilPrincess")!=null&&attackBounds!=null) {
+            ActorBeta test = mainStage.getRoot().findActor("EvilPrincess");
+            if(attackBounds.overlaps(test)) {
+                ((EvilPrincess)test).takeDamage(1);
+            }
+        }
         if(mainStage.getRoot().findActor("CowBoyBoss")!=null&&attackBounds!=null) {
             ActorBeta test = mainStage.getRoot().findActor("CowBoyBoss");
             if(attackBounds.overlaps(test)) {
