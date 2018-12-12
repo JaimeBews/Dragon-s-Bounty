@@ -76,22 +76,22 @@ public class GameScreenUI extends ScreenBeta {
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
 
         leftTransition = new ActorBeta(0, HEIGHT / 2, mainStage);
-        leftTransition.setSize(WIDTH/19.0f,100);
+        leftTransition.setSize(WIDTH/19.0f,HEIGHT/10);
        // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         leftTransition.setBoundaryRectangle();
 
         rightTransition = new ActorBeta(WIDTH-100, HEIGHT / 2, mainStage);
-        rightTransition.setSize(WIDTH/20.0f,100);
+        rightTransition.setSize(WIDTH/20.0f,HEIGHT/10);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         rightTransition.setBoundaryRectangle();
 
         downTransition = new ActorBeta(WIDTH/2, 0, mainStage);
-        downTransition.setSize(WIDTH/20.0f,100);
+        downTransition.setSize(WIDTH/20.0f,HEIGHT/10);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         downTransition.setBoundaryRectangle();
 
         upTransition = new ActorBeta(WIDTH/2, HEIGHT-100, mainStage);
-        upTransition.setSize(WIDTH/20.0f,100);
+        upTransition.setSize(WIDTH/20.0f,HEIGHT/10);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         upTransition.setBoundaryRectangle();
 
@@ -434,25 +434,25 @@ public class GameScreenUI extends ScreenBeta {
     public void Colliders()
     {
         Left_Collider = new ActorBeta();
-        Left_Collider.setSize(WIDTH/21, HEIGHT/1.0f);
+        Left_Collider.setSize(WIDTH/22, HEIGHT/1.0f);
         Left_Collider.setPosition(0, 0);
         Left_Collider.setBoundaryRectangle();
         mainStage.addActor(Left_Collider);
 
         Right_Collider = new ActorBeta();
-        Right_Collider.setSize(WIDTH/21, HEIGHT/1.0f);
+        Right_Collider.setSize(WIDTH/22, HEIGHT/1.0f);
         Right_Collider.setPosition(WIDTH-Right_Collider.getWidth(),0);
         Right_Collider.setBoundaryRectangle();
         mainStage.addActor(Right_Collider);
 
         Bottom_Collider = new ActorBeta();
-        Bottom_Collider.setSize(WIDTH/1.0f,HEIGHT/12);
+        Bottom_Collider.setSize(WIDTH/1.0f,HEIGHT/14);
         Bottom_Collider.setPosition(0,-15);
         Bottom_Collider.setBoundaryRectangle();
         mainStage.addActor(Bottom_Collider);
 
         Top_Collider = new ActorBeta();
-        Top_Collider.setSize(WIDTH/1.0f, HEIGHT/12);
+        Top_Collider.setSize(WIDTH/1.0f, HEIGHT/14);
         Top_Collider.setPosition(0, HEIGHT/1.0f-Top_Collider.getHeight());
         Top_Collider.setBoundaryRectangle();
         mainStage.addActor(Top_Collider);
