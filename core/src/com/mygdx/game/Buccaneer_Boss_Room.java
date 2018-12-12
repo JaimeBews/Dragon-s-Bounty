@@ -81,14 +81,9 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
     @Override
     public void update(float dt) {
 
-        cowboy_boss.preventOverlap(Left_Collider);
-        cowboy_boss.preventOverlap(Right_Collider);
-        cowboy_boss.preventOverlap(Bottom_Collider);
-        cowboy_boss.preventOverlap(Top_Collider);
-        if(i!=3 && dt!=0) {
-            time=0;
-                cowboy_boss.moveBy(DirToMove.x/20, DirToMove.y/20);
-
+        if (i != 3 && dt != 0)
+        {
+            time = 0;
             if (cowboy_boss.overlaps(Top_Collider)) {
                 DirToMove = new Vector2((blueRanger.getX() - cowboy_boss.getX()), (blueRanger.getY() - cowboy_boss.getY()));
                 i += 1;
@@ -110,43 +105,34 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
                 ismovingright = true;
                 i += 1;
             }
-        }else if(i==3)
-        {
-            ismovingleft = false;
-            ismovingright = false;
-            ismovingup = false;
-            ismovingdown = false;
-            time +=1;
         }
-        if(time>100)
+        else if(i==3)
         {
-            i=0;
+            DirToMove = new Vector2((blueRanger.getX() - cowboy_boss.getX()), (blueRanger.getY() - cowboy_boss.getY()));
+            time ++;
         }
-        //bandit_boss.boundToWorld();
-
+        if (time == 1000) {
+            i = 0;
+            ismovingup = true;
+        }
         DirToMove.nor();
-        DirToMove.x*=2.0f;
-        DirToMove.y*=2.0f;
-        Gdx.app.log("speed",""+DirToMove.y);
-        //bandit_boss.moveBy(DirToMove.x,DirToMove.y);
 
-        //bandit_boss.moveBy(DirToMove.x*0.01f,DirToMove.y*0.01f);
+        DirToMove.x *= 2.0f;
+        DirToMove.y *= 2.0f;
+        Gdx.app.log("speed", "" + DirToMove.y);
         if (ismovingdown) {
 
-            cowboy_boss.moveBy(DirToMove.x , DirToMove.y );
+            cowboy_boss.moveBy(DirToMove.x, DirToMove.y);
+        } else if (ismovingup) {
+
+            cowboy_boss.moveBy(DirToMove.x, DirToMove.y);
+        } else if (ismovingright) {
+
+            cowboy_boss.moveBy(DirToMove.x, DirToMove.y);
+        } else if (ismovingleft) {
+
+            cowboy_boss.moveBy(DirToMove.x, DirToMove.y);
         }
-        else if (ismovingup) {
-
-            cowboy_boss.moveBy(DirToMove.x , DirToMove.y );
-        }
-        else if (ismovingright) {
-
-            cowboy_boss.moveBy(DirToMove.x , DirToMove.y );
-        }else if (ismovingleft) {
-
-            cowboy_boss.moveBy(DirToMove.x , DirToMove.y );
-        }
-
 
 
         blueRanger.preventOverlap(Top_Collider);
