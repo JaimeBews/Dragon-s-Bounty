@@ -255,16 +255,31 @@ public class GameScreenUI extends ScreenBeta {
     }
     @Override
     public void update(float dt) {
+        Gdx.app.log("hearts",""+hearts.length);
         if(blueRanger.health==3&&hearts[2]==null) {
-            hearts=null;
+            if( hearts[1]!=null) {
+                hearts[1].setX(-10000);
+                hearts[1].remove();
+                hearts[1] = null;
+
+            }
+            if( hearts[0]!=null) {
+                hearts[0].setX(-10000);
+                hearts[0].remove();
+                hearts[0] = null;
+
+            }
             for(int i = 0; i<blueRanger.health; i++) {
                 hearts[i] = new ActorBeta(100 * i, HEIGHT - 100, mainStage);
                 hearts[i].loadTexture("sprites/myBackgrounds/heart.png");
                 mainStage.addActor(hearts[i]);
             }
         }
-        if(blueRanger.health==2&&hearts[2]!=null)
+        if(blueRanger.health==2&&hearts[2]!=null) {
             hearts[2].remove();
+            hearts[2].setX(-10000);
+            hearts[2]=null;
+        }
         if(blueRanger.health==1&&hearts[1]!=null)
             hearts[1].remove();
         if(blueRanger.health==0&&hearts[0]!=null) {
