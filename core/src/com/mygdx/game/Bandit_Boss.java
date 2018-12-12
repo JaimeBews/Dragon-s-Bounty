@@ -63,8 +63,8 @@ public class Bandit_Boss extends PowerRanger {
         if (health<0) {
             health = 0;
             other.setIceUnlocked();
+            other.healToFull();
             kill();
-
         }
     }
 

@@ -256,6 +256,13 @@ public class GameScreenUI extends ScreenBeta {
     }
     @Override
     public void update(float dt) {
+        if(blueRanger.health==3&&hearts[2]==null) {
+            for(int i = 0; i<blueRanger.health; i++) {
+                hearts[i] = new ActorBeta(100 * i, HEIGHT - 100, mainStage);
+                hearts[i].loadTexture("sprites/myBackgrounds/heart.png");
+                mainStage.addActor(hearts[i]);
+            }
+        }
         if(blueRanger.health==2&&hearts[2]!=null)
             hearts[2].remove();
         if(blueRanger.health==1&&hearts[1]!=null)
@@ -273,6 +280,7 @@ public class GameScreenUI extends ScreenBeta {
                 blueRanger.setPosition(blueRanger.getX() + touchpad.getKnobPercentX() * (blueRanger.speed), blueRanger.getY() + touchpad.getKnobPercentY() * (blueRanger.speed));
             }
         }
+        blueRanger.preventOverlap(Left_Collider);
     }
     private void CheckAttackCollisions(){
         if(mainStage.getRoot().findActor("Enemy")!=null&&attackBounds!=null) {
@@ -418,26 +426,26 @@ public class GameScreenUI extends ScreenBeta {
     public void Colliders()
     {
         Left_Collider = new ActorBeta();
-        Left_Collider.setSize(10, HEIGHT/1.0f);
+        Left_Collider.setSize(WIDTH/21, HEIGHT/1.0f);
         Left_Collider.setPosition(0, 0);
         Left_Collider.setBoundaryRectangle();
         mainStage.addActor(Left_Collider);
 
         Right_Collider = new ActorBeta();
-        Right_Collider.setSize(10, HEIGHT/1.0f);
-        Right_Collider.setPosition(WIDTH,200);
+        Right_Collider.setSize(WIDTH/21, HEIGHT/1.0f);
+        Right_Collider.setPosition(WIDTH-Right_Collider.getWidth(),0);
         Right_Collider.setBoundaryRectangle();
         mainStage.addActor(Right_Collider);
 
         Bottom_Collider = new ActorBeta();
-        Bottom_Collider.setSize(WIDTH/1.0f,15);
+        Bottom_Collider.setSize(WIDTH/1.0f,HEIGHT/12);
         Bottom_Collider.setPosition(0,-15);
         Bottom_Collider.setBoundaryRectangle();
         mainStage.addActor(Bottom_Collider);
 
         Top_Collider = new ActorBeta();
-        Top_Collider.setSize(WIDTH/1.0f, 15);
-        Top_Collider.setPosition(0, HEIGHT/1.0f);
+        Top_Collider.setSize(WIDTH/1.0f, HEIGHT/12);
+        Top_Collider.setPosition(0, HEIGHT/1.0f-Top_Collider.getHeight());
         Top_Collider.setBoundaryRectangle();
         mainStage.addActor(Top_Collider);
     }

@@ -26,7 +26,7 @@ public class Bandit_Room_2 extends GameScreenUI {
 
     @Override
     public void initialize() {
-
+        super.initialize();
         ActorBeta.setWorldBounds(WIDTH, HEIGHT);
 
         foreground = new ActorBeta(0, 0, mainStage);
@@ -73,26 +73,27 @@ public class Bandit_Room_2 extends GameScreenUI {
         //});
 
         //CREATE BLUE RANGER
-        blueRanger = new BlueRanger();
+        blueRanger = MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
-
+        loadUI();
    }
 
     @Override
     public void update(float dt) {
+
+        if(blueRanger!=null&& upTransition!=null)
+            if(blueRanger.overlaps(upTransition)){
+                bgm.dispose();
+                MyGame.banditRoom = null;
+                MyGame.banditRoom = new Bandit_Room();
+                MyGame.setActiveScreen(MyGame.banditRoom);
+            }
+
+        super.update(dt);
         blueRanger.act(dt);
-        //touchpad.act(dt);
 
-        //if(touchpad.getKnobPercentX() > 0.5 && touchpad.getKnobPercentX() < 0.9) {
-         //   Gdx.app.log("Delta X", "Knob X is " + touchpad.getKnobPercentX());
-        //}
-
-        //if(touchpad.getKnobPercentY() > 0.5 && touchpad.getKnobPercentY() < 0.9) {
-           // Gdx.app.log("Delta Y", "Knob Y is " + touchpad.getKnobPercentX());
-        //}
-
-       // blueRanger.boundToWorld();
+        blueRanger.boundToWorld();
     }
 
 

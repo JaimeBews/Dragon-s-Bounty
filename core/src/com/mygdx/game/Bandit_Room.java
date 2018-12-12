@@ -55,15 +55,15 @@ public class Bandit_Room extends GameScreenUI {
 */
         fireWall = new ActorBeta(0,0,mainStage);
         fireWall.loadTexture("sprites/myBackgrounds/fire.png");
-        fireWall.setSize(downTransition.getWidth()*2, downTransition.getHeight()*2);
-        fireWall.setPosition(downTransition.getX()-downTransition.getWidth()/2, downTransition.getY());
+        fireWall.setSize(downTransition.getWidth()*4, downTransition.getHeight()*2);
+        fireWall.setPosition(downTransition.getX()-fireWall.getWidth()/2, downTransition.getY());
         fireWall.setBoundaryRectangle();
         fireWall.setName("FireWall");
 
         iceWall = new ActorBeta(0,0,mainStage);
         iceWall.loadTexture("sprites/myBackgrounds/ice.png");
-        iceWall.setSize(upTransition.getWidth()*2, upTransition.getHeight()*2);
-        iceWall.setPosition(upTransition.getX()-upTransition.getWidth()/2, upTransition.getY()-upTransition.getHeight());
+        iceWall.setSize(upTransition.getWidth()*4, upTransition.getHeight()*2);
+        iceWall.setPosition(upTransition.getX()-iceWall.getWidth()/2, upTransition.getY()-upTransition.getHeight());
         iceWall.setBoundaryRectangle();
         iceWall.setName("IceWall");
 
