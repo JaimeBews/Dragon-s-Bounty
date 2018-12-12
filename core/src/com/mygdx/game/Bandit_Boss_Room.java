@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -11,6 +12,9 @@ public class Bandit_Boss_Room extends GameScreenUI {
     boolean ismovingright = false;
     boolean ismovingup = false;
     boolean ismovingdown = true;
+
+
+
     Vector2 DirToMove;
     float time;
     int i = 0;
@@ -32,9 +36,10 @@ public class Bandit_Boss_Room extends GameScreenUI {
         foreground.loadTexture("Level Assets/LevelG.png");
         foreground.setSize(WIDTH, HEIGHT);
 
-        //bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Chronos.mp3"));
-        //bgm.play();
-        //bgm.setLooping(true);
+        bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Bit Bit Loop.mp3"));
+        bgm.play();
+        bgm.setLooping(true);
+        bgm.setVolume(.2f);
         //uiStage.addActor(tableContainer);
         ismovingdown = true;
 /*
@@ -89,10 +94,10 @@ public class Bandit_Boss_Room extends GameScreenUI {
 
         //int time = Time;
 
-      //  bandit_boss.preventOverlap(Left_Collider);
-       // bandit_boss.preventOverlap(Right_Collider);
-       // bandit_boss.preventOverlap(Bottom_Collider);
-      //  bandit_boss.preventOverlap(Top_Collider);
+        blueRanger.preventOverlap(Left_Collider);
+        blueRanger.preventOverlap(Right_Collider);
+        blueRanger.preventOverlap(Bottom_Collider);
+        blueRanger.preventOverlap(Top_Collider);
         //if(i!=3 && dt!=0) {
           //  time=0;
             //bandit_boss.moveBy( 0.00f,  1.00f);
@@ -152,7 +157,7 @@ public class Bandit_Boss_Room extends GameScreenUI {
         }*/
         if(blueRanger!=null&& leftTransition!=null)
             if(blueRanger.overlaps(leftTransition)){
-                //bgm.dispose();
+                bgm.dispose();
                 MyGame.banditRoom = null;
                 MyGame.banditRoom = new Bandit_Room();
                 MyGame.setActiveScreen(MyGame.banditRoom);

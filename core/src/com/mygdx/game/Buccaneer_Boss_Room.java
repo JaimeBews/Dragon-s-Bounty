@@ -35,9 +35,10 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         foreground.loadTexture("Level Assets/LevelI.png");
         foreground.setSize(WIDTH, HEIGHT);
 
-        bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Chronos.mp3"));
+        bgm = Gdx.audio.newMusic(Gdx.files.internal("Music/Bit Bit Loop.mp3"));
         bgm.play();
         bgm.setLooping(true);
+        bgm.setVolume(.2f);
         uiStage.addActor(tableContainer);
 /*
         sideBoundaryL = new ActorBeta(0,0,mainStage);

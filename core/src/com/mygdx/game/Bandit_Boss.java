@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector3;
 
 /**
@@ -8,6 +9,8 @@ import com.badlogic.gdx.math.Vector3;
  */
 
 public class Bandit_Boss extends PowerRanger {
+    Sound shootSFX;
+    Sound gotHitSFX;
     float speed;
     float health = 3;
     boolean wasHit=false;
@@ -18,8 +21,10 @@ public class Bandit_Boss extends PowerRanger {
     BulletL bullet;
 
     Bandit_Boss() {
-    speed=5;
-    setName("BanditBoss");
+        shootSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/KnifeThrow.mp3"));
+        gotHitSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/ZombiePain.mp3"));
+        speed=5;
+        setName("BanditBoss");
         idle = loadAnimationFromSheet("sprites/Macs/cowboy side2.png",1,8,0.3f,true);
      //  idle = loadAnimationFromFiles(idleString, 0.5f, true);
 
@@ -59,6 +64,7 @@ public class Bandit_Boss extends PowerRanger {
         if(damageTaken>0&&wasHit==false) {
             health -= damageTaken;
             wasHit=true;
+            gotHitSFX.play();
         }
         if (health<0) {
             health = 0;
@@ -74,7 +80,7 @@ public class Bandit_Boss extends PowerRanger {
             bullet.setSize(16,16 );
             bullet.setPosition(this.getX()-this.getWidth()*2,this.getY()-this.getHeight()/2 );
             this.getStage().addActor(bullet);
-
+            shootSFX.play();
 
     }
 

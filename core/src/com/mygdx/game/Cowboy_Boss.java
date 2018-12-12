@@ -1,5 +1,8 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+
 /**
  * Created by markapptist on 2018-11-12.
  */
@@ -9,11 +12,12 @@ public class Cowboy_Boss extends PowerRanger {
     float health =3;
     float badCounter=0.0f;
     float damageDelay=2.0f;
-
+    Sound gotHitSFX;
     BlueRanger other;
     Cowboy_Boss() {
-    speed=5;
-    this.setName("CowBoyBoss");
+        gotHitSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/ZombiePain.mp3"));
+        speed=5;
+        this.setName("CowBoyBoss");
         idle = loadAnimationFromSheet("sprites/Macs/pirate side.png",1,4,0.3f,true);
      //  idle = loadAnimationFromFiles(idleString, 0.5f, true);
 
@@ -51,6 +55,7 @@ public class Cowboy_Boss extends PowerRanger {
         if(damageTaken>0&&wasHit==false) {
             health -= damageTaken;
             wasHit=true;
+            gotHitSFX.play();
         }
         if (health<0) {
             health = 0;
