@@ -12,11 +12,6 @@ public class Item_Room extends GameScreenUI {
 
     ActorBeta foreground;
     ActorBeta background;
-    //ActorBeta sideBoundaryR;
-    //ActorBeta sideBoundaryL;
-    //ActorBeta sideBoundaryL2;
-    //ActorBeta topBoundary;
-    //ActorBeta bottomBoundary;
     EvilPrincess evilPrincess;
     boolean ismovingleft = false;
     boolean ismovingright = false;
@@ -40,30 +35,6 @@ public class Item_Room extends GameScreenUI {
         bgm.setVolume(.2f);
         uiStage.addActor(tableContainer);
 
-/*
-        sideBoundaryL = new ActorBeta(0,0,mainStage);
-        sideBoundaryL.setSize(WIDTH/20.0f, 1000);
-        // SideBoundaryL.setPosition(WIDTH / 1.3f, HEIGHT);
-        sideBoundaryL.setBoundaryRectangle();
-
-        sideBoundaryR = new ActorBeta(0,0,mainStage);
-        sideBoundaryR.setSize(WIDTH/0.8f, 1000);
-        sideBoundaryR.setPosition(WIDTH / 1.05f,0);
-        sideBoundaryR.setBoundaryRectangle();
-
-        bottomBoundary = new ActorBeta(0,0,mainStage);
-        bottomBoundary.setSize(1800,100);
-        bottomBoundary.setBoundaryRectangle();
-
-        topBoundary = new ActorBeta(0,0,mainStage);
-        topBoundary.setSize(1800, 100);
-        topBoundary.setPosition(WIDTH/20f, HEIGHT/1.1f);
-        topBoundary.setBoundaryRectangle();
-
-        /*background = new ActorBeta(900, 300, mainStage);
-        background.loadTexture("sprites/backgrounds/background0_20.png");
-        background.setScale(2.0f);
-
         //CREATE BLUE RANGER*/
         evilPrincess = new EvilPrincess();
         evilPrincess.setPosition(WIDTH / 15, HEIGHT / 3);
@@ -82,8 +53,6 @@ public class Item_Room extends GameScreenUI {
         evilPrincess.preventOverlap(Right_Collider);
         evilPrincess.preventOverlap(Bottom_Collider);
         evilPrincess.preventOverlap(Top_Collider);
-        if (evilPrincess.health>1)
-        {
             if (i != 3 && dt != 0) {
                 time = 0;
                 evilPrincess.moveBy(DirToMove.x/20, DirToMove.y/20);
@@ -140,34 +109,8 @@ public class Item_Room extends GameScreenUI {
 
                 evilPrincess.moveBy(DirToMove.x, DirToMove.y);
             }
-        }
 
-        if (evilPrincess.health == 1)
-        {
-            if (evilPrincess.getY()>HEIGHT) {
-                //DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
-                i += 1;
-                ismovingdown = true;
-                ismovingup = false;
-                ismovingleft = false;
-                ismovingright = false;
-            } else if (evilPrincess.getY()<0) {
-                //DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
-                ismovingdown = false;
-                ismovingup = true;
-                ismovingleft = false;
-                ismovingright = false;
-                i += 1;
-            }
-            if (ismovingdown) {
 
-                evilPrincess.moveBy( 0.00f, -1.0f);
-            }
-            else if (ismovingup) {
-
-                evilPrincess.moveBy( 0.00f,  1.01f);
-            }
-        }
         blueRanger.preventOverlap(Top_Collider);
         blueRanger.preventOverlap(Right_Collider);
         blueRanger.preventOverlap(Top_Collider);
