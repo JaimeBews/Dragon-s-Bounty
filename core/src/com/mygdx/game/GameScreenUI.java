@@ -256,6 +256,7 @@ public class GameScreenUI extends ScreenBeta {
     @Override
     public void update(float dt) {
         if(blueRanger.health==3&&hearts[2]==null) {
+            hearts=null;
             for(int i = 0; i<blueRanger.health; i++) {
                 hearts[i] = new ActorBeta(100 * i, HEIGHT - 100, mainStage);
                 hearts[i].loadTexture("sprites/myBackgrounds/heart.png");
@@ -312,18 +313,21 @@ public class GameScreenUI extends ScreenBeta {
             ActorBeta test = mainStage.getRoot().findActor("BanditBoss");
             if(attackBounds.overlaps(test)) {
                 ((Bandit_Boss)test).takeDamage(1);
+
             }
         }
         if(mainStage.getRoot().findActor("EvilPrincess")!=null&&attackBounds!=null) {
             ActorBeta test = mainStage.getRoot().findActor("EvilPrincess");
             if(attackBounds.overlaps(test)) {
                 ((EvilPrincess)test).takeDamage(1);
+
             }
         }
         if(mainStage.getRoot().findActor("CowBoyBoss")!=null&&attackBounds!=null) {
             ActorBeta test = mainStage.getRoot().findActor("CowBoyBoss");
             if(attackBounds.overlaps(test)) {
                 ((Cowboy_Boss)test).takeDamage(1);
+
             }
         }
         if(mainStage.getRoot().findActor("IceWall")!=null&&attackBounds!=null&&attackType==2) {
