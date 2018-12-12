@@ -124,6 +124,8 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         DirToMove.nor();
 
         DirToMove.x*=2.0f;
+        DirToMove.y*=2.0f;
+        Gdx.app.log("speed",""+DirToMove.y);
         //bandit_boss.moveBy(DirToMove.x,DirToMove.y);
 
         //bandit_boss.moveBy(DirToMove.x*0.01f,DirToMove.y*0.01f);
