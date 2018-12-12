@@ -10,7 +10,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class BlueRanger extends PowerRanger {
     float speed;
     float health=3;
-
+    boolean fireUnlocked =false;
+    boolean iceUnlocked =false;
+    boolean wasHit=false;
+    float badCounter=0.0f;
+    float damageDelay=3.0f;
     BlueRanger() {
         speed=5;
         setName("Player");
@@ -39,19 +43,36 @@ public class BlueRanger extends PowerRanger {
         setMaxSpeed(900);
 
     }
-
+    public void setFireUnlocked(){
+        fireUnlocked=true;
+    }
+    public void setIceUnlocked(){
+        iceUnlocked=true;
+    }
     @Override
+
     public void act(float dt) {
         super.act(dt);
-
-        setAcceleration(900);
-    //    accelerateAtAngle(270);
-     //   applyPhysics(dt);
+        if (wasHit) {
+            badCounter += dt;
+            if (badCounter > damageDelay) {
+                wasHit = false;
+                badCounter = 0.0f;
+            }
+            setAcceleration(900);
+            //    accelerateAtAngle(270);
+            //   applyPhysics(dt);
+        }
     }
     public void takeDamage(int damageTaken){
-        if(damageTaken>0)
+        if(damageTaken>0&&wasHit==false) {
             health -= damageTaken;
+            wasHit=true;
+        }
         if (health<0)
             health = 0;
+    }
+    public void healToFull(){
+        health=3;
     }
 }

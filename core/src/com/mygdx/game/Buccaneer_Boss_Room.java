@@ -68,16 +68,13 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         cowboy_boss.setPosition(WIDTH / 4, HEIGHT / 3);
         mainStage.addActor(cowboy_boss);
 
-        bullet = new BulletL();
-        bullet.setPosition(WIDTH / 4, HEIGHT / 3);
-        //bullet.setSize(10,10);
-        //bullet.setBoundaryRectangle();
-        mainStage.addActor(bullet);
+
 
         blueRanger = MyGame.blueRanger;
         blueRanger.setPosition(WIDTH / 2, HEIGHT / 3);
         mainStage.addActor(blueRanger);
         loadUI();
+        DirToMove = new Vector2((blueRanger.getX()-cowboy_boss.getX()),(blueRanger.getY()-cowboy_boss.getY()));
     }
 
     @Override
@@ -89,7 +86,7 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         cowboy_boss.preventOverlap(Top_Collider);
         if(i!=3 && dt!=0) {
             time=0;
-            cowboy_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
+            cowboy_boss.moveBy(DirToMove.x , DirToMove.y);
             if (cowboy_boss.overlaps(Top_Collider)) {
                 DirToMove = new Vector2((blueRanger.getX() - cowboy_boss.getX()), (blueRanger.getY() - cowboy_boss.getY()));
                 i += 1;
@@ -124,25 +121,26 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
             i=0;
         }
         //bandit_boss.boundToWorld();
-        //DirToMove.nor();
-        //Vector2 DirToMove = new Vector2((blueRanger.getX()-bandit_boss.getX()),(blueRanger.getY()-bandit_boss.getY()));
+        DirToMove.nor();
+
+        DirToMove.x*=2.0f;
         //bandit_boss.moveBy(DirToMove.x,DirToMove.y);
 
         //bandit_boss.moveBy(DirToMove.x*0.01f,DirToMove.y*0.01f);
         if (ismovingdown) {
 
-            cowboy_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
+            cowboy_boss.moveBy(DirToMove.x , DirToMove.y );
         }
         else if (ismovingup) {
 
-            cowboy_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
+            cowboy_boss.moveBy(DirToMove.x , DirToMove.y );
         }
         else if (ismovingright) {
 
-            cowboy_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
+            cowboy_boss.moveBy(DirToMove.x , DirToMove.y );
         }else if (ismovingleft) {
 
-            cowboy_boss.moveBy(DirToMove.x * 0.01f, DirToMove.y * 0.01f);
+            cowboy_boss.moveBy(DirToMove.x , DirToMove.y );
         }
 
 
@@ -162,8 +160,7 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         super.update(dt);
         blueRanger.act(dt);
         blueRanger.boundToWorld();
-        bullet.act(dt);
-        bullet.boundToWorld();
+
     }
 
 

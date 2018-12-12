@@ -89,19 +89,19 @@ public class Bandit_Boss_Room extends GameScreenUI {
 
         //int time = Time;
 
-        bandit_boss.preventOverlap(Left_Collider);
-        bandit_boss.preventOverlap(Right_Collider);
-        bandit_boss.preventOverlap(Bottom_Collider);
-        bandit_boss.preventOverlap(Top_Collider);
+      //  bandit_boss.preventOverlap(Left_Collider);
+       // bandit_boss.preventOverlap(Right_Collider);
+       // bandit_boss.preventOverlap(Bottom_Collider);
+      //  bandit_boss.preventOverlap(Top_Collider);
         //if(i!=3 && dt!=0) {
           //  time=0;
             //bandit_boss.moveBy( 0.00f,  1.00f);
-            if (bandit_boss.overlaps(Top_Collider)) {
+            if (bandit_boss.getY()>HEIGHT) {
                 //DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
                 i += 1;
                 ismovingdown = true;
                 ismovingup = false;
-            } else if (bandit_boss.overlaps(Bottom_Collider)) {
+            } else if (bandit_boss.getY()<0) {
                 //DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
                 ismovingdown = false;
                 ismovingup = true;
@@ -161,7 +161,7 @@ public class Bandit_Boss_Room extends GameScreenUI {
         super.update(dt);
         blueRanger.act(dt);
         blueRanger.boundToWorld();
-        bandit_boss.boundToWorld();
+      //  bandit_boss.boundToWorld();
     }
 
 

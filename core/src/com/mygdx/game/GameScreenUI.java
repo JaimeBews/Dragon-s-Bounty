@@ -60,8 +60,7 @@ public class GameScreenUI extends ScreenBeta {
     int faceDir;//left right up down
     int attackType;//fire ice bite
 
-    boolean fireUnlocked =false;
-    boolean iceUnlocked =false;
+
 
     @Override
     public void initialize() {
@@ -154,7 +153,7 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-                if(!isAttacking&&iceUnlocked) {
+                if(!isAttacking&&blueRanger.iceUnlocked) {
                     breathSFX.play();
                     isAttacking = true;
                     attackType=1;
@@ -180,7 +179,7 @@ public class GameScreenUI extends ScreenBeta {
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-                if(!isAttacking&&fireUnlocked) {
+                if(!isAttacking&&blueRanger.fireUnlocked) {
                     breathSFX.play();
                     isAttacking = true;
                     attackType=2;
@@ -227,12 +226,7 @@ public class GameScreenUI extends ScreenBeta {
             }
         });
     }
-    public void setFireUnlocked(){
-        fireUnlocked=true;
-    }
-    public void setIceUnlocked(){
-        iceUnlocked=true;
-    }
+
     public void loadUI(){
 
         for(int i = 0; i<blueRanger.health; i++) {
@@ -303,6 +297,18 @@ public class GameScreenUI extends ScreenBeta {
                 }
             }
 
+        }
+        if(mainStage.getRoot().findActor("BanditBoss")!=null&&attackBounds!=null) {
+            ActorBeta test = mainStage.getRoot().findActor("BanditBoss");
+            if(attackBounds.overlaps(test)) {
+                ((Bandit_Boss)test).takeDamage(1);
+            }
+        }
+        if(mainStage.getRoot().findActor("CowBoyBoss")!=null&&attackBounds!=null) {
+            ActorBeta test = mainStage.getRoot().findActor("CowBoyBoss");
+            if(attackBounds.overlaps(test)) {
+                ((Cowboy_Boss)test).takeDamage(1);
+            }
         }
         if(mainStage.getRoot().findActor("IceWall")!=null&&attackBounds!=null&&attackType==2) {
             ActorBeta test = mainStage.getRoot().findActor("IceWall");

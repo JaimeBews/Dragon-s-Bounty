@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 public class BulletL extends PowerRanger {
     float speed;
+    BlueRanger other;
     BulletL() {
         speed=5;
 
@@ -19,6 +20,23 @@ public class BulletL extends PowerRanger {
     @Override
     public void act(float dt) {
         super.act(dt);
+        if(other==null)
+            getplayer();
         setAcceleration(900);
+        this.moveBy(-2,0);
+        if(this.overlaps(other)&&other!=null) {
+            other.takeDamage(1);
+            this.remove();
+            this.setX(100000);
+        }
     }
+    public void getplayer() {
+        if(this != null && this.getStage() != null) {
+            if (this.getStage().getRoot().findActor("Player") != null) {
+                other = this.getStage().getRoot().findActor("Player");
+            }
+        }
+    }
+
+
 }
