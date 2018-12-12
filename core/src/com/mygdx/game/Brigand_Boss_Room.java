@@ -41,12 +41,12 @@ public class Brigand_Boss_Room extends GameScreenUI {
         blueRanger.preventOverlap(Right_Collider);
         blueRanger.preventOverlap(Top_Collider);
         blueRanger.preventOverlap(Bottom_Collider);
-        if (blueRanger != null && rightTransition != null)
-            if (blueRanger.overlaps(rightTransition)) {
+        if (blueRanger != null && downTransition != null)
+            if (blueRanger.overlaps(downTransition)) {
                 bgm.dispose();
-                MyGame.buccaneerRoom = null;
-                MyGame.buccaneerRoom = new Buccaneer_Room();
-                MyGame.setActiveScreen(MyGame.buccaneerRoom);
+                MyGame.banditRoom = null;
+                MyGame.banditRoom = new Bandit_Room();
+                MyGame.setActiveScreen(MyGame.banditRoom);
             }
 
         super.update(dt);

@@ -117,8 +117,8 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         }
         DirToMove.nor();
 
-        DirToMove.x *= 2.0f;
-        DirToMove.y *= 2.0f;
+        DirToMove.x *= 2.5f;
+        DirToMove.y *= 2.5f;
         Gdx.app.log("speed", "" + DirToMove.y);
         if (ismovingdown) {
 

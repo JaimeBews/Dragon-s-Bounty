@@ -92,8 +92,8 @@ public class Item_Room extends GameScreenUI {
             //bandit_boss.boundToWorld();
             DirToMove.nor();
 
-            DirToMove.x *= 2.0f;
-            DirToMove.y *= 2.0f;
+            DirToMove.x *= 2.5f;
+            DirToMove.y *= 2.5f;
             Gdx.app.log("speed", "" + DirToMove.y);
             //bandit_boss.moveBy(DirToMove.x,DirToMove.y);
 
@@ -130,5 +130,6 @@ public class Item_Room extends GameScreenUI {
         blueRanger.boundToWorld();
 
     }
+
 
 }

@@ -1,17 +1,22 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+
 /**
  * Created by markapptist on 2018-11-12.
  */
 
 public class EvilPrincess extends PowerRanger {
     float speed;
+    Sound gotHitSFX;
     float health =3;
     float badCounter=0.0f;
     float damageDelay=2.0f;
 
     BlueRanger other;
     EvilPrincess() {
+        gotHitSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/ZombiePain.mp3"));
         this.setName("EvilPrincess");
     speed=5;
         String[] idleString = {"sprites/rangers/blue/BlueRanger_0.png", "sprites/rangers/blue/BlueRanger_1.png",
@@ -53,6 +58,7 @@ public class EvilPrincess extends PowerRanger {
         if(damageTaken>0&&wasHit==false) {
             health -= damageTaken;
             wasHit=true;
+            gotHitSFX.play();
         }
         if (health<0) {
             health = 0;

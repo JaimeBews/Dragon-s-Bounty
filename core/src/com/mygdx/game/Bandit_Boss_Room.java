@@ -106,7 +106,7 @@ public class Bandit_Boss_Room extends GameScreenUI {
                 i += 1;
                 ismovingdown = true;
                 ismovingup = false;
-            } else if (bandit_boss.getY()<0+bandit_boss.getHeight()/2) {
+            } else if (bandit_boss.getY()<bandit_boss.getHeight()*2) {
                 //DirToMove = new Vector2((blueRanger.getX() - bandit_boss.getX()), (blueRanger.getY() - bandit_boss.getY()));
                 ismovingdown = false;
                 ismovingup = true;

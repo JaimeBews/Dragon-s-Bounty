@@ -18,7 +18,7 @@ public class Cowboy_Boss extends PowerRanger {
         gotHitSFX = Gdx.audio.newSound(Gdx.files.internal("Sounds/ZombiePain.mp3"));
         speed=5;
         this.setName("CowBoyBoss");
-        idle = loadAnimationFromSheet("sprites/Macs/pirate side.png",1,4,0.3f,true);
+        idle = loadAnimationFromSheet("sprites/Macs/pirate_boss.png",1,4,0.3f,true);
      //  idle = loadAnimationFromFiles(idleString, 0.5f, true);
 
         this.setBoundaryRectangle();

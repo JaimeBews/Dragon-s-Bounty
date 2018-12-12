@@ -10,8 +10,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class BlueRanger extends PowerRanger {
     float speed;
     float health=3;
-    boolean fireUnlocked =false;
-    boolean iceUnlocked =false;
+    boolean fireUnlocked =true;
+    boolean iceUnlocked =true;
     boolean wasHit=false;
     float badCounter=0.0f;
     float damageDelay=3.0f;
