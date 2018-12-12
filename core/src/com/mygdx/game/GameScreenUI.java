@@ -80,7 +80,7 @@ public class GameScreenUI extends ScreenBeta {
        // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         leftTransition.setBoundaryRectangle();
 
-        rightTransition = new ActorBeta(WIDTH-100, HEIGHT / 2, mainStage);
+        rightTransition = new ActorBeta(WIDTH-130, HEIGHT / 2.4f, mainStage);
         rightTransition.setSize(WIDTH/20.0f,HEIGHT/10);
         // leftTransition.loadTexture("sprites/backgrounds/background0_59.png");
         rightTransition.setBoundaryRectangle();

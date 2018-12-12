@@ -16,7 +16,7 @@ public class Item_Room extends GameScreenUI {
     boolean ismovingleft = false;
     boolean ismovingright = false;
     boolean ismovingup = false;
-    boolean ismovingdown = true;
+    boolean ismovingdown = false;
     Vector2 DirToMove;
     float time;
     int i = 0;
@@ -49,13 +49,10 @@ public class Item_Room extends GameScreenUI {
 
     @Override
     public void update(float dt) {
-        evilPrincess.preventOverlap(Left_Collider);
-        evilPrincess.preventOverlap(Right_Collider);
-        evilPrincess.preventOverlap(Bottom_Collider);
-        evilPrincess.preventOverlap(Top_Collider);
-            if (i != 3 && dt != 0) {
+
+            if (i != 3 && dt != 0)
+            {
                 time = 0;
-                evilPrincess.moveBy(DirToMove.x/20, DirToMove.y/20);
                 if (evilPrincess.overlaps(Top_Collider)) {
                     DirToMove = new Vector2((blueRanger.getX() - evilPrincess.getX()), (blueRanger.getY() - evilPrincess.getY()));
                     i += 1;
@@ -77,15 +74,20 @@ public class Item_Room extends GameScreenUI {
                     ismovingright = true;
                     i += 1;
                 }
-            } else if (i == 3) {
-                ismovingleft = false;
-                ismovingright = false;
-                ismovingup = false;
-                ismovingdown = false;
-                time += 1;
             }
-            if (time > 100) {
+            else if(i==3)
+            {
+                //ismovingleft = false;
+                //ismovingright = false;
+                //ismovingup = false;
+                //ismovingdown = false;
+                DirToMove = new Vector2((blueRanger.getX() - evilPrincess.getX()), (blueRanger.getY() - evilPrincess.getY()));
+                //evilPrincess.moveBy(DirToMove.x /2, DirToMove.y/2);
+                time ++;
+            }
+            if (time == 1000) {
                 i = 0;
+                ismovingup = true;
             }
             //bandit_boss.boundToWorld();
             DirToMove.nor();
