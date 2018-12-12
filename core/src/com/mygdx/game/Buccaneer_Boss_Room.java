@@ -65,7 +65,7 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         //CREATE BLUE RANGER*/
 
         cowboy_boss = new Cowboy_Boss();
-        cowboy_boss.setPosition(WIDTH / 4, HEIGHT / 3);
+        cowboy_boss.setPosition(100, HEIGHT / 3);
         mainStage.addActor(cowboy_boss);
 
 
@@ -86,7 +86,8 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
         cowboy_boss.preventOverlap(Top_Collider);
         if(i!=3 && dt!=0) {
             time=0;
-            cowboy_boss.moveBy(DirToMove.x , DirToMove.y);
+                cowboy_boss.moveBy(DirToMove.x/20, DirToMove.y/20);
+
             if (cowboy_boss.overlaps(Top_Collider)) {
                 DirToMove = new Vector2((blueRanger.getX() - cowboy_boss.getX()), (blueRanger.getY() - cowboy_boss.getY()));
                 i += 1;
@@ -121,8 +122,8 @@ public class Buccaneer_Boss_Room extends GameScreenUI {
             i=0;
         }
         //bandit_boss.boundToWorld();
-        DirToMove.nor();
 
+        DirToMove.nor();
         DirToMove.x*=2.0f;
         DirToMove.y*=2.0f;
         Gdx.app.log("speed",""+DirToMove.y);

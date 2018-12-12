@@ -56,9 +56,9 @@ public class EvilPrincess extends PowerRanger {
         }
         if (health<0) {
             health = 0;
-            other.setFireUnlocked();
-            other.healToFull();
             kill();
+            other.healToFull();
+            other.wonGame();
 
         }
     }

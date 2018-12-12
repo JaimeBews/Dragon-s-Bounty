@@ -169,7 +169,7 @@ public class GameScreenUI extends ScreenBeta {
 
                     } else {
                         runIceBreath(1);
-                        blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
+                        //blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
                         attackBounds.setPosition(blueRanger.getX(), blueRanger.getY());
                     }
                 }
@@ -190,12 +190,11 @@ public class GameScreenUI extends ScreenBeta {
                     blueRanger.elapsedTime=0;
                     if (faceDir == 1) {
                         runFireBreath(-1);
-
                         attackBounds.setPosition(blueRanger.getX() - (WIDTH / 8), blueRanger.getY());
 
                     } else {
                         runFireBreath(1);
-                        blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
+                      //  blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
                         attackBounds.setPosition(blueRanger.getX(), blueRanger.getY());
                     }
                 }
@@ -219,8 +218,8 @@ public class GameScreenUI extends ScreenBeta {
                         attackBounds.setPosition(blueRanger.getX() - (WIDTH / 32), blueRanger.getY());
 
                     } else {
-                        blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
-                        attackBounds.setPosition(blueRanger.getX(), blueRanger.getY());
+                      //  blueRanger.setX(blueRanger.getX() + blueRanger.getWidth());
+                        attackBounds.setPosition(blueRanger.getX()+blueRanger.getWidth(), blueRanger.getY());
                     }
                 }
             }
@@ -267,8 +266,11 @@ public class GameScreenUI extends ScreenBeta {
             hearts[2].remove();
         if(blueRanger.health==1&&hearts[1]!=null)
             hearts[1].remove();
-        if(blueRanger.health==0&&hearts[0]!=null)
+        if(blueRanger.health==0&&hearts[0]!=null) {
             hearts[0].remove();
+            gameOver();
+            blueRanger.healToFull();
+        }
         if(!pause) {
 
             touchpad.act(dt);
@@ -345,22 +347,29 @@ public class GameScreenUI extends ScreenBeta {
     private void SetAnimations(float dt){
         if(isAttacking) {
             if(attackType==1||attackType==2) {
-                blueRanger.setAnimation(blueRanger.breathHold);
-
-            } else
-                blueRanger.setAnimation(blueRanger.biteAttack);
-             if(faceDir==2) {
-                blueRanger.setWidth(-blueRanger.getWidth());
-
+                if(faceDir==1)
+                     blueRanger.setAnimation(blueRanger.breathHold);
+                else
+                    blueRanger.setAnimation(blueRanger.breathEnd);
+            } else {
+                if(faceDir==1)
+                   blueRanger.setAnimation(blueRanger.biteAttackLeft);
+                else
+                    blueRanger.setAnimation(blueRanger.biteAttackRight);
             }
+            // if(faceDir==2) {
+             //   blueRanger.setWidth(-blueRanger.getWidth());
+
+           // }
             counter+=dt;
             if (counter>2) {
                 isAttacking = false;
                 counter = 0;
-                blueRanger.setWidth(-blueRanger.getWidth());
+               // blueRanger.setWidth(-blueRanger.getWidth());
                 attackBounds.remove();
-                if(faceDir==2)
-                    blueRanger.setX(blueRanger.getX()-blueRanger.getWidth());
+                attackBounds.setX(-10000);
+              //  if(faceDir==2)
+                //    blueRanger.setX(blueRanger.getX()-blueRanger.getWidth());
             }
         }
         else if(faceDir==1){
@@ -373,23 +382,16 @@ public class GameScreenUI extends ScreenBeta {
     private void gameOver(){
         if (MyGame.gameOverScreen == null) {
             MyGame.gameOverScreen = new GameOverScreen();
-            bgm.dispose();
+            if(bgm!=null)
+                bgm.dispose();
             MyGame.setActiveScreen(MyGame.gameOverScreen);
         }else {
-            bgm.dispose();
+            if(bgm!=null)
+                 bgm.dispose();
             MyGame.setActiveScreen(MyGame.gameOverScreen);
         }
     }
-    private void wonGame(){
-        if (MyGame.victoryScreen == null) {
-            MyGame.victoryScreen = new VictoryScreen();
-            bgm.dispose();
-            MyGame.setActiveScreen(MyGame.victoryScreen);
-        }else {
-            bgm.dispose();
-            MyGame.setActiveScreen(MyGame.victoryScreen);
-        }
-    }
+
     private void CheckDirection(){//left right up down
         if(touchpad.getKnobPercentX()<0){
             faceDir=1;

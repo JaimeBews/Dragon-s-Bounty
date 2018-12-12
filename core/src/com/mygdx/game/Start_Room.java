@@ -83,9 +83,7 @@ public class Start_Room extends GameScreenUI {
         blueRanger.preventOverlap(Right_Collider);
         blueRanger.preventOverlap(Left_Collider);
         //blueRanger.preventOverlap(topBoundary);
-        if(blueRanger.overlaps(princess)){
-            blueRanger.health=2;
-        }
+
          if(blueRanger!=null&& downTransition!=null)
             if(blueRanger.overlaps(downTransition)){
                 bgm.dispose();

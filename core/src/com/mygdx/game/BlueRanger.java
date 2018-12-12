@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class BlueRanger extends PowerRanger {
     float speed;
     float health=3;
-    boolean fireUnlocked =true;
+    boolean fireUnlocked =false;
     boolean iceUnlocked =false;
     boolean wasHit=false;
     float badCounter=0.0f;
@@ -29,11 +29,12 @@ public class BlueRanger extends PowerRanger {
         walkUp = loadAnimationFromSheet("sprites/Macs/dragon3.png",1,4,0.3f,true);
         walkDown = loadAnimationFromSheet("sprites/Macs/dragon2.png",1,4,0.3f,true);
 
-        biteAttack = loadAnimationFromSheet("sprites/Macs/dragonbiteleft.png",1,8,0.6f,true);
+        biteAttackLeft = loadAnimationFromSheet("sprites/Macs/dragonbiteleft.png",1,8,0.6f,true);
+        biteAttackRight = loadAnimationFromSheet("sprites/Macs/dragonbiteright.png",1,8,0.6f,true);
 
         breathInit = loadAnimationFromSheet("sprites/Macs/dragonfireinit.png",1,2,0.3f,false);
         breathHold = loadAnimationFromSheet("sprites/Macs/dragonfireleft.png",1,17,0.3f,false);
-        breathEnd = loadAnimationFromSheet("sprites/Macs/dragonfireend.png",1,2,0.3f,false);
+        breathEnd = loadAnimationFromSheet("sprites/Macs/dragonfireright.png",1,17,0.3f,false);
         //  idle = loadAnimationFromFiles(idleString, 0.5f, true);
 
         this.setBoundaryRectangle();
@@ -62,6 +63,15 @@ public class BlueRanger extends PowerRanger {
             setAcceleration(900);
             //    accelerateAtAngle(270);
             //   applyPhysics(dt);
+        }
+    }
+    public void wonGame(){
+        if (MyGame.victoryScreen == null) {
+            MyGame.victoryScreen = new VictoryScreen();
+
+            MyGame.setActiveScreen(MyGame.victoryScreen);
+        }else {
+            MyGame.setActiveScreen(MyGame.victoryScreen);
         }
     }
     public void takeDamage(int damageTaken){

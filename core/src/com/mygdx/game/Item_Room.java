@@ -66,7 +66,7 @@ public class Item_Room extends GameScreenUI {
 
         //CREATE BLUE RANGER*/
         evilPrincess = new EvilPrincess();
-        evilPrincess.setPosition(WIDTH / 4, HEIGHT / 3);
+        evilPrincess.setPosition(WIDTH / 15, HEIGHT / 3);
         mainStage.addActor(evilPrincess);
 
         blueRanger =MyGame.blueRanger;
@@ -86,7 +86,7 @@ public class Item_Room extends GameScreenUI {
         {
             if (i != 3 && dt != 0) {
                 time = 0;
-                evilPrincess.moveBy(DirToMove.x, DirToMove.y);
+                evilPrincess.moveBy(DirToMove.x/20, DirToMove.y/20);
                 if (evilPrincess.overlaps(Top_Collider)) {
                     DirToMove = new Vector2((blueRanger.getX() - evilPrincess.getX()), (blueRanger.getY() - evilPrincess.getY()));
                     i += 1;

@@ -6,7 +6,7 @@ package com.mygdx.game;
 
 public class Cowboy_Boss extends PowerRanger {
     float speed;
-    float health =1;
+    float health =3;
     float badCounter=0.0f;
     float damageDelay=2.0f;
 

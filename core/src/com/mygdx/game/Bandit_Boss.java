@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 
 public class Bandit_Boss extends PowerRanger {
     float speed;
-    float health = 1;
+    float health = 3;
     boolean wasHit=false;
     float damageDelay=2.1f;
     float attackDelay=2.5f;
